@@ -1,4 +1,5 @@
 <?php require_once 'config.php'; ?>
+<?php include 'model/koneksi.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,28 +54,16 @@
                             class="material-icons"> table_chart </i><span>Data Karyawan</span></a>
                     <ul class="collapse list-unstyled menu" id="dropdownKaryawan">
                         <li>
-                            <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                                <input type="hidden" value="all" name="tampil-data">
-                                <button type="submit" class="a btn btn-link">Semua Karyawan</button>
-                            </form>
+                            <a href="#">Semua Karyawan</a>
                         </li>
                         <li>
-                            <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                                <input type="hidden" value="tetap" name="tampil-data">
-                                <button type="submit" class="a btn btn-link">Karyawan Tetap</button>
-                            </form>
+                            <a href="#">Karyawan Tetap</a>
                         </li>
                         <li>
-                            <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                                <input type="hidden" value="kontrak" name="tampil-data">
-                                <button type="submit" class="a btn btn-link">Karyawan Kontrak</button>
-                            </form>
+                            <a href="#">Karyawan Kontrak</a>
                         </li>
                         <li>
-                            <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                                <input type="hidden" value="magang" name="tampil-data">
-                                <button type="submit" class="a btn btn-link">Karyawan Magang</button>
-                            </form>
+                            <a href="#">Karyawan Magang</a>
                         </li>
                     </ul>
                 </li>
@@ -86,13 +75,13 @@
                             class="material-icons"> person </i><span>Admin</span></a>
                     <ul class="collapse list-unstyled menu text-dark" id="dropdownAdmin">
                         <li>
-                            <a href="admin/kelola_admin.php"><i class="material-icons">edit</i>Edit Profile</a>
+                            <a href="#"><i class="material-icons">edit</i>Edit Profile</a>
                         </li>
                         <li>
-                            <a href="admin/log_admin.php"><i class="material-icons">history</i>Log Activity</a>
+                            <a href="#"><i class="material-icons">history</i>Log Activity</a>
                         </li>
                         <li>
-                            <a href="login.php"><i class="material-icons">logout</i>Log out</a>
+                            <a href="#"><i class="material-icons">logout</i>Log out</a>
                         </li>
                     </ul>
                 </li>
@@ -127,6 +116,185 @@
 
             <!-- Main Content -->
             <div class="index main-content">
+                <!-- Heading Dashboard -->
+                <?php require_once "template/heading-dashboard.php"; ?>
+
+                <!-- Card Jumlah Karyawan -->
+                <?php
+                    // Mengambil jumlah seluruh karyawan
+                    $getTotal =  mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS total_kar FROM karyawan"));                    
+                    
+                    // Mengambil jumlah array tiap tipe karyawan
+                    $getJmlTipeQuery = mysqli_query($konek, "SELECT COUNT(*) FROM karyawan GROUP BY tipe_kar");
+                    while($data = mysqli_fetch_array($getJmlTipeQuery)){
+                        // Menambahkan setiap data pada kolom ke array baru
+                        $arrJmlTipekar[] = $data[0];
+                    }
+                ?>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header">
+                                <div class="icon icon-warning">
+                                    <span class="material-icons">
+                                        groups
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="category"><strong>Total Karyawan</strong></p>
+                                <h3 class="card-title"><?= $getTotal['total_kar']; ?></h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons text-info">info</i>
+                                    <a href="#">See detailed report</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header">
+                                <div class="icon icon-rose">
+                                    <span class="material-icons">
+                                        group
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="category"><strong>Karyawan Tetap</strong></p>
+                                <h3 class="card-title"><?= $arrJmlTipekar[2]; ?></h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons text-info">info</i>
+                                    <a href="#">See detailed report</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header">
+                                <div class="icon icon-success">
+                                    <span class="material-icons">
+                                        group
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="category"><strong>Karyawan Kontrak</strong></p>
+                                <h3 class="card-title"><?= $arrJmlTipekar[0]; ?></h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons text-info">info</i>
+                                    <a href="#">See detailed report</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header">
+                                <div class="icon icon-gray">
+                                    <span class="material-icons">
+                                        group
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="category"><strong>Karyawan Magang</strong></p>
+                                <h3 class="card-title"><?= $arrJmlTipekar[1]; ?></h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons text-info">info</i>
+                                    <a href="#">See detailed report</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card bar chart jumlah Karyawan tiap divisi -->
+                <?php
+                    // Mengubah array nama divisi menjadi array
+                    $getDivisiQuery = mysqli_fetch_array(mysqli_query($konek, "SELECT group_concat(DISTINCT divisi) FROM karyawan"));
+                    $arrDivisi = explode(',', $getDivisiQuery[0]);
+
+                    // Mengambil jumlah array tiap divisi
+                    $getJmlDivisiQuery = mysqli_query($konek, "SELECT COUNT(*) FROM karyawan GROUP BY divisi");
+                    while($data = mysqli_fetch_array($getJmlDivisiQuery)){
+                        // Menambahkan setiap data pada kolom ke array baru
+                        $arrJmlDivisi[] = $data[0];
+                    }
+                    
+                    $dataPoints = array(
+                        array("y" => $arrJmlDivisi[0], "label" => $arrDivisi[0] ),
+                        array("y" => $arrJmlDivisi[1], "label" => $arrDivisi[1] ),
+                        array("y" => $arrJmlDivisi[2], "label" => $arrDivisi[2] )
+                    );
+                ?>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header d-flex flex-row justify-content-between">
+                                Jumlah Karyawan Tiap Divisi <span class="material-icons me-5">equalizer</span>
+                            </div>
+                            <div class="card-body">
+                                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Navtabs About + Organizaional Structure -->
+                <div class="navbar-tabs">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item nav-about">
+                                        <a href="#about" class="nav-link active" role="tab" data-toggle="tab">About</a>
+                                    </li>
+                                    <li class="nav-item nav-org-structure">
+                                        <a href="#org-struct" class="nav-link" role="tab" data-toggle="tab">Organization
+                                            Structure</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="about-content tab-pane active" role="tabpanel" id="about">
+                                        <div class="about-container p-4">
+                                            <h1>About</h1>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua. Sem et tortor
+                                                consequat id porta nibh venenatis. Sagittis orci a scelerisque purus
+                                                semper. Nunc consequat interdum varius sit amet mattis vulputate enim
+                                                nulla. Curabitur vitae nunc sed velit. Quis imperdiet massa tincidunt
+                                                nunc pulvinar sapien et ligula. Feugiat pretium nibh ipsum consequat. Eu
+                                                consequat ac felis donec. Turpis in eu mi bibendum. Egestas fringilla
+                                                phasellus faucibus scelerisque eleifend donec pretium. Mattis rhoncus
+                                                urna neque viverra justo nec ultrices dui sapien. Quam nulla porttitor
+                                                massa id. Tincidunt nunc pulvinar sapien et. Auctor eu augue ut lectus
+                                                arcu bibendum. Condimentum lacinia quis vel eros donec. Nunc lobortis
+                                                mattis aliquam faucibus. Leo a diam sollicitudin tempor id eu nisl nunc
+                                                mi. Potenti nullam ac tortor vitae purus faucibus ornare suspendisse
+                                                sed. Nunc faucibus a pellentesque sit amet porttitor eget dolor. Eget
+                                                nunc lobortis mattis aliquam faucibus purus.</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-structure-content tab-pane" role="tabpanel" id="org-struct">
+                                        <img class="p-4"
+                                            src="https://sdn-117gresik.sch.id/wp-content/uploads/2021/02/Salinan-dari-Minarsihs.pd_.sd-President_COO_20210218_113442.png"
+                                            alt="struktur-organisasi" width="100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -135,6 +303,30 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="<?= URL_JS ?>/jquery-3.3.1.min.js"></script>
     <script src="<?= URL_JS ?>/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script>
+    // Bar Chart
+    window.onload = function() {
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            theme: "light2",
+            title: {
+                text: "Jumlah Karyawan Tiap Divisi"
+            },
+            axisY: {
+                title: "Jumlah Karyawan"
+            },
+            data: [{
+                type: "column",
+                yValueFormatString: "#,##0.## Karyawan",
+                dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+        chart.render();
+
+    }
+    </script>
     <script src="<?= URL_JS ?>/script.js"></script>
     <script src="<?= URL_JS ?>/bootstrap.min.js"></script>
     <script src="<?= URL_JS ?>/popper.min.js"></script>

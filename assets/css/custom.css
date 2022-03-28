@@ -341,4 +341,227 @@ label {
     border: 1px solid #dcd9d9;
     z-index: 4;
   }
+
+  .dropdown-menu {
+    border: 0;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 26%);
+    transform: translate3d(0, -20px, 0);
+    visibility: hidden;
+    transition: all 150ms linear;
+    display: block;
+    min-width: 15rem;
+    right: 0;
+    left: auto;
+    opacity: 0;
+  }
 }
+
+/*=============================================
+  login design start
+  =========================================*/
+.login-page {
+  height: 100vh;
+  background-image: url("https://www.rumahweb.com/home/images/bg-700.webp");
+  background-size: cover;
+}
+
+.login-page card {
+  box-shadow: 2px 2rem rgba(0, 0, 0, 0.493);
+}
+/*=============================================
+    login design end
+    =========================================*/
+
+/*=======================================================
+main-content inner design like card start
+===============================================*/
+
+.main-content {
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+  height: 93.5vh;
+  overflow-y: scroll;
+}
+
+.main-content .content-header h1 {
+  font-weight: 600;
+}
+
+.card {
+  display: inline-block;
+  position: relative;
+  border: none !important;
+  width: 100%;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
+  border-radius: 6px;
+  color: rgba(0, 0, 0, 0.87);
+  background: #fff;
+}
+
+.card-stats .card-header {
+  float: left;
+  text-align: center;
+}
+
+.card .card-header {
+  padding: 1rem 20px 0;
+  z-index: 3;
+  background-color: #fff !important;
+  border-bottom: none;
+}
+
+.card .card-footer .stats .material-icons {
+  position: relative;
+  top: 4px;
+  font-size: 1.3rem;
+}
+
+.card-stats .card-header span {
+  font-size: 36px;
+  line-height: 56px;
+  width: 56px;
+  height: 56px;
+}
+
+.icon.icon-warning {
+  color: var(--orange);
+}
+
+.icon.icon-rose {
+  color: var(--danger);
+}
+.icon.icon-success {
+  color: var(--success);
+}
+.icon.icon-info {
+  color: var(--info);
+}
+
+.icon.icon-gray {
+  color: var(--secondary);
+}
+
+.card .card-footer {
+  margin: 0 7px 0px;
+  padding-top: 10px;
+  background-color: var(--white);
+  border-top: 1px solid #eeeeee;
+}
+
+.text-info {
+  color: var(--info) !important;
+}
+
+.card-stats .card-content {
+  text-align: right;
+  padding-top: 10px;
+}
+
+.card .card-content {
+  padding: 1rem 20px;
+  position: relative;
+}
+
+.card .card-content .category {
+  margin-bottom: 0;
+}
+.card .category:not([class*="text-"]) {
+  color: #555555;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.card .card-title:not(.card-calendar .card-title) {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.card-stats .card-title {
+  margin: 0;
+}
+
+.card .card-footer .stats {
+  line-height: 22px;
+  color: #555555;
+  font-size: 0.9rem;
+}
+
+.card .card-footer div {
+  display: inline-block;
+}
+
+.card .card-header-text h4 {
+  margin-top: 0;
+  margin-bottom: 3px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #222222;
+  text-decoration: none;
+}
+
+.card .card-content {
+  padding: 0.9rem 20px;
+  position: relative;
+}
+
+.card-about {
+  height: 550px;
+  background-position: center;
+  background-size: cover;
+  background-image: url(/img/bg-rumahweb.png);
+}
+
+table > tbody > tr > td:nth-child(6) {
+  font-weight: bolder;
+}
+
+.detail-karyawan .navbar-tabs h1 {
+  font-weight: 900;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+}
+
+.detail-karyawan .navbar-tabs h1:hover {
+  color: var(--primary);
+}
+
+.detail-karyawan .navbar-tabs .detail-isi tr {
+  font-size: 1rem;
+}
+
+.detail-karyawan .navbar-tabs .detail-content .detail-keterangan {
+  font-weight: 900;
+}
+
+.detail-karyawan .navbar-tabs .card .tab-content a {
+  width: 100%;
+  max-width: 300px;
+}
+
+.detail-karyawan .navbar-tabs .card .detail-content img {
+  max-width: 300px;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.log-admin h1 {
+  font-weight: 900;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+}
+
+.log-admin h1:hover {
+  color: var(--primary);
+}
+
+/*=======================================================
+     main-content inner design like card end
+     ===============================================*/
