@@ -1,0 +1,344 @@
+@import url("https://fonts.googleapis.com/css?family=Nova+Slim&display=swap");
+
+:root {
+  --primary: #0d6efd;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #d63384;
+  --danger: #dc3545;
+  --orange: #fd7e14;
+  --warning: #ffc107;
+  --success: #28a745;
+  --teal: #20c997;
+  --info: #0dcaf0;
+  --secondary: #adb5bd;
+  --black: #000;
+  --white: #fff;
+}
+
+body,
+html {
+  line-height: 1.8;
+  font-family: "Roboto", sans-serif;
+  color: #555e58;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  font-weight: 400;
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4 {
+  font-weight: 400;
+  line-height: 1.5em;
+}
+
+p {
+  font-size: 15px;
+  margin: 12px 0 0;
+  line-height: 24px;
+}
+
+a {
+  color: #333;
+  font-weight: 400;
+}
+
+button:focus {
+  box-shadow: none;
+  outline: none;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0px;
+  list-style: none;
+}
+
+a,
+a:hover,
+a:focus {
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+img {
+  width: 100%;
+}
+
+label {
+  font-weight: 600;
+}
+
+/*=======================================================
+  material-icons  copy & paste form site google material-icons
+  ==================================================*/
+
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local("Material Icons"), local("MaterialIcons-Regular"), url(https://example.com/MaterialIcons-Regular.woff2) format("woff2"), url(https://example.com/MaterialIcons-Regular.woff) format("woff"),
+    url(https://example.com/MaterialIcons-Regular.ttf) format("truetype");
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
+
+/*=======================================================
+  material-icons  copy & paste form site google material-icons
+  ==================================================*/
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  overflow: auto;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE start
+----------------------------------------------------- */
+
+#sidebar {
+  position: fixed;
+  height: 100vh !important;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 11;
+  width: 260px;
+  overflow: auto;
+  transition: all 0.3s;
+  background: #ffffff;
+  box-shadow: 0 10px 30px -12px rgb(0 0 0 / 42%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eee;
+}
+
+#sidebar ul li {
+  padding: 2px 7px;
+}
+
+#sidebar ul li a:hover {
+  color: #333;
+  background-color: rgba(200, 200, 200, 0.2);
+}
+
+.dropdown-toggle::after {
+  position: absolute;
+  right: 10px;
+  top: 25px;
+}
+
+#sidebar ul.components {
+  padding: 1rem 0;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+  line-height: 2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  position: relative;
+  font-weight: 400;
+  display: block;
+}
+
+#sidebar ul li a span {
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+#sidebar ul li a i {
+  position: relative;
+  margin-right: 10px;
+  top: 5px;
+  color: #444;
+  margin-left: 10px;
+}
+
+#sidebar.show-nav,
+.body-overlay.show-nav {
+  transform: translatex(0%);
+  opacity: 1;
+  display: block;
+  visibility: visible;
+  z-index: 15;
+}
+
+/*=======================================================
+   main-content navbar-design start
+   ===============================================*/
+
+#content {
+  position: relative;
+  transition: all 0.3s;
+  background-color: #eeeeee;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+}
+
+.top-navbar {
+  width: 100%;
+  z-index: 9;
+  position: relative;
+}
+
+.navbar {
+  background-image: url("https://www.rumahweb.com/home/images/bg-700.webp");
+  background-size: cover;
+  color: #ffffff;
+}
+
+.navbar-brand {
+  color: #ffffff;
+  transition: all 0.3s;
+}
+
+.navbar-brand:hover {
+  color: #ffffff !important;
+  letter-spacing: 0.3rem;
+  cursor: pointer;
+}
+
+.navbar-brand:visited {
+  color: #ffffff !important;
+}
+
+.navbar button {
+  background-color: transparent;
+  border: none;
+}
+.navbar button span {
+  color: #fff;
+}
+
+#sidebarCollapse {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  margin-right: 1rem;
+  margin-bottom: 6px;
+  border: none;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.09);
+}
+
+#sidebarCollapse span {
+  margin: 9px 0;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+
+#sidebarCollapse:hover > span {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+}
+
+/*=======================================================
+  main-content navbar-design end
+  ===============================================*/
+@media only screen and (min-width: 992px) {
+  #sidebar.active {
+    width: 80px;
+    height: 100% !important;
+    position: absolute !important;
+    overflow: visible !important;
+    top: 0 !important;
+    z-index: 666;
+    float: left !important;
+    bottom: 0 !important;
+  }
+
+  #sidebar.active .sidebar-header h3 span {
+    display: none;
+    transition: all 0.5s ease;
+  }
+
+  #sidebar.active ul li a span {
+    display: none;
+    transition: all 0.5s ease;
+  }
+
+  #sidebar.active .dropdown-toggle::after {
+    display: none;
+    transition: all 0.5s ease;
+  }
+
+  #content {
+    width: calc(100% - 260px);
+    position: relative;
+    float: right;
+    transition: all 0.3s;
+    background-color: #eeeeee;
+  }
+
+  #content.active {
+    width: calc(100% - 80px);
+  }
+
+  #sidebar.active .menu {
+    position: absolute;
+    left: 81px;
+    background-color: var(--white);
+    width: 180px;
+    height: auto;
+    margin: 5px 0;
+    top: 0;
+    border: 1px solid #dcd9d9;
+    z-index: 4;
+  }
+}
