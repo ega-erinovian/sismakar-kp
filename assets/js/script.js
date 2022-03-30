@@ -10,7 +10,7 @@ $(document).ready(function () {
   });
 });
 
-// Table Data
+// Tabel Karyawan Setting
 $(document).ready(function () {
   $(".data-table").each(function (_, table) {
     $(table).DataTable({
@@ -18,7 +18,7 @@ $(document).ready(function () {
         [5, 10, 25, 50, 100, -1],
         [5, 10, 25, 50, 100, "All"],
       ],
-      createdRow: function (row, data, index) {
+      createdRow: function (row, data) {
         if (data[5].toLowerCase() === "aktif") {
           $("td", row).eq(5).addClass("text-success");
         } else {
@@ -28,30 +28,3 @@ $(document).ready(function () {
     });
   });
 });
-
-// Table Log
-$(document).ready(function () {
-  $(".log-table").each(function (_, table) {
-    $(table).DataTable({
-      lengthMenu: [
-        [5, 10, 25, 50, 100, -1],
-        [5, 10, 25, 50, 100, "All"],
-      ],
-    });
-  });
-});
-
-// Password Validation
-var password = document.getElementById("inputPass");
-var conf_password = document.getElementById("inputConfPass");
-
-function validatePassword() {
-  if (password.value != conf_password.value) {
-    conf_password.setCustomValidity("Password Don't Match");
-  } else {
-    conf_password.setCustomValidity("");
-  }
-}
-
-password.onchange = validatePassword;
-conf_password.onkeyup = validatePassword;

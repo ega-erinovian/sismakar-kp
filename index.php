@@ -11,9 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <title><?= SITENAME ?></title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?= URL_CSS ?>/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?= URL_CSS ?>/bootstrap.min.css?v=<?= time(); ?>" />
     <!----css3---->
-    <link rel="stylesheet" href="<?= URL_CSS ?>/custom.css" />
+    <link rel="stylesheet" href="<?= URL_CSS ?>/custom.css?v=<?= time(); ?>" />
     <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -54,16 +54,28 @@
                             class="material-icons"> table_chart </i><span>Data Karyawan</span></a>
                     <ul class="collapse list-unstyled menu" id="dropdownKaryawan">
                         <li>
-                            <a href="#">Semua Karyawan</a>
+                            <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
+                                <input type="hidden" value="all" name="tampil-data">
+                                <button type="submit" class="a btn btn-link">Semua Karyawan</button>
+                            </form>
                         </li>
                         <li>
-                            <a href="#">Karyawan Tetap</a>
+                            <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
+                                <input type="hidden" value="tetap" name="tampil-data">
+                                <button type="submit" class="a btn btn-link">Karyawan Tetap</button>
+                            </form>
                         </li>
                         <li>
-                            <a href="#">Karyawan Kontrak</a>
+                            <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
+                                <input type="hidden" value="kontrak" name="tampil-data">
+                                <button type="submit" class="a btn btn-link">Karyawan Kontrak</button>
+                            </form>
                         </li>
                         <li>
-                            <a href="#">Karyawan Magang</a>
+                            <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
+                                <input type="hidden" value="magang" name="tampil-data">
+                                <button type="submit" class="a btn btn-link">Karyawan Magang</button>
+                            </form>
                         </li>
                     </ul>
                 </li>

@@ -51,13 +51,13 @@
                     class="material-icons"> person </i><span>Admin</span></a>
             <ul class="collapse list-unstyled menu text-dark" id="dropdownAdmin">
                 <li>
-                    <a href="../admin/kelola_admin.php"><i class="material-icons">edit</i>Edit Profile</a>
+                    <a href="#"><i class="material-icons">edit</i>Edit Profile</a>
                 </li>
                 <li>
-                    <a href="../admin/log_admin.php"><i class="material-icons">history</i>Log Activity</a>
+                    <a href="#"><i class="material-icons">history</i>Log Activity</a>
                 </li>
                 <li>
-                    <a href="../login.php"><i class="material-icons">logout</i>Log out</a>
+                    <a href="#"><i class="material-icons">logout</i>Log out</a>
                 </li>
             </ul>
         </li>
