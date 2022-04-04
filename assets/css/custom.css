@@ -537,7 +537,7 @@ table > tbody > tr > td:nth-child(6) {
   font-weight: 900;
 }
 
-.detail-karyawan .navbar-tabs .card .tab-content a {
+.detail-karyawan .navbar-tabs .card .tab-content button {
   width: 100%;
   max-width: 300px;
 }

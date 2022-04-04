@@ -17,7 +17,7 @@
 <td>$email</td>
 <td>$status_kar</td>
 <td>
-    <form action='#' method='GET'>
+    <form action='../karyawan/detail_karyawan.php' method='GET'>
         <input type='hidden' value='$id_kar' name='id_kar'>
         <button type='submit' class='btn btn-primary'>detail</button>
     </form>
