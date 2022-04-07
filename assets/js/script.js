@@ -28,3 +28,15 @@ $(document).ready(function () {
     });
   });
 });
+
+// Table Log Aktivitas
+$(document).ready(function () {
+  $(".log-table").each(function (_, table) {
+    $(table).DataTable({
+      lengthMenu: [
+        [5, 10, 25, 50, 100, -1],
+        [5, 10, 25, 50, 100, "All"],
+      ],
+    });
+  });
+});
