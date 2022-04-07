@@ -76,7 +76,8 @@
                                         ?>
                                         <div class="row">
                                             <div class="col-md-4 text-center">
-                                                <img src=<?= $profile_img ?> alt="pas-foto" class="mb-3 img-fluid">
+                                                <img src='../assets/img/<?= $profile_img ?>' alt="pas-foto"
+                                                    class="mb-3 img-fluid">
                                                 <form action="kelola_karyawan.php" method="get" role="form">
                                                     <input type="hidden" name="kelola" value="Edit">
                                                     <input type="hidden" name="id_kar" value="<?= $id_kar ?>">

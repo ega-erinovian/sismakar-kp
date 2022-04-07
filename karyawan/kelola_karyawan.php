@@ -169,15 +169,10 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-    <!-- jQuery -->
     <script type="text/javascript" src="../<?= URL_JS ?>/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="../<?= URL_JS ?>/jquery-3.3.1.slim.min.js"></script>
-    <!-- Popper JS -->
     <script type="text/javascript" src="../<?= URL_JS ?>/popper.min.js"></script>
-    <!-- Bootstrap JS -->
     <script type="text/javascript" src="../<?= URL_JS ?>/bootstrap.min.js"></script>
-    <!-- Custom JS -->
     <script type="text/javascript" src="../<?= URL_JS ?>/script.js"></script>
 </body>
 

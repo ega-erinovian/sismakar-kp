@@ -1,5 +1,6 @@
 <?php require_once '../config.php'; ?>
 <?php include '../model/koneksi.php';?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +41,21 @@
 
             <!-- Heading Dashboard -->
             <?php require_once "../template/heading-dashboard.php"; ?>
+
+            <!-- Notifikasi Status Kelola Karyawan -->
+            <?php
+                if(isset($_SESSION['msg'])){
+            ?>
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                <?= $_SESSION['msg']; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php
+                    unset($_SESSION['msg']);
+                }
+            ?>
 
             <div class="row">
                 <div class="col-12">
