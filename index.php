@@ -155,7 +155,9 @@
                             </div>
                             <div class="card-content">
                                 <p class="category"><strong>Total Karyawan</strong></p>
-                                <h3 class="card-title"><?= $getTotal['total_kar']; ?></h3>
+                                <h3 class="card-title">
+                                    <?php if(isset($getTotal['total_kar'])) echo $getTotal['total_kar']; else echo 0 ; ?>
+                                </h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -176,7 +178,8 @@
                             </div>
                             <div class="card-content">
                                 <p class="category"><strong>Karyawan Tetap</strong></p>
-                                <h3 class="card-title"><?= $arrJmlTipekar[2]; ?></h3>
+                                <h3 class="card-title">
+                                    <?php if(isset($arrJmlTipekar[2])) echo $arrJmlTipekar[2]; else echo 0 ; ?></h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -197,7 +200,8 @@
                             </div>
                             <div class="card-content">
                                 <p class="category"><strong>Karyawan Kontrak</strong></p>
-                                <h3 class="card-title"><?= $arrJmlTipekar[0]; ?></h3>
+                                <h3 class="card-title">
+                                    <?php if(isset($arrJmlTipekar[0])) echo $arrJmlTipekar[0]; else echo 0 ; ?></h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -218,7 +222,8 @@
                             </div>
                             <div class="card-content">
                                 <p class="category"><strong>Karyawan Magang</strong></p>
-                                <h3 class="card-title"><?= $arrJmlTipekar[1]; ?></h3>
+                                <h3 class="card-title">
+                                    <?php if(isset($arrJmlTipekar[1])) echo $arrJmlTipekar[1]; else echo 0 ; ?></h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
