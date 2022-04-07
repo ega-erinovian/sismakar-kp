@@ -77,15 +77,14 @@
                                     <label for="inputDivisi" class="form-label">Divisi</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="divisi" required>
                                         <option value="0" disabled selected>Pilih Divisi</option>
-                                        <option <?php if($divisi=="Front-End Developer") echo 'selected'; ?>>Front-End
-                                            Developer</option>
-                                        <option <?php if($divisi=="Back-End Developer") echo 'selected'; ?>>Back-End
-                                            Developer</option>
-                                        <option <?php if($divisi=="Network Engineer") echo 'selected'; ?>>Network
-                                            Engineer</option>
-                                        <option <?php if($divisi=="Finance") echo 'selected'; ?>>Finance
-                                        </option>
+                                        <option <?php if($divisi=="Technical Support") echo 'selected'; ?>>Technical
+                                            Support</option>
+                                        <option <?php if($divisi=="Developer") echo 'selected'; ?>>Developer</option>
+                                        <option <?php if($divisi=="NOC") echo 'selected'; ?>>NOC</option>
+                                        <option <?php if($divisi=="Sales") echo 'selected'; ?>>Sales</option>
+                                        <option <?php if($divisi=="Finance") echo 'selected'; ?>>Finance</option>
                                         <option <?php if($divisi=="Marketing") echo 'selected'; ?>>Marketing</option>
+                                        <option <?php if($divisi=="Billing") echo 'selected'; ?>>Billing</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">

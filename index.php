@@ -137,11 +137,9 @@
                     $getTotal =  mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS total_kar FROM karyawan"));                    
                     
                     // Mengambil jumlah array tiap tipe karyawan
-                    $getJmlTipeQuery = mysqli_query($konek, "SELECT COUNT(*) FROM karyawan GROUP BY tipe_kar");
-                    while($data = mysqli_fetch_array($getJmlTipeQuery)){
-                        // Menambahkan setiap data pada kolom ke array baru
-                        $arrJmlTipekar[] = $data[0];
-                    }
+                    $getJmlTipeTetap = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS tetap FROM karyawan WHERE tipe_kar = 'Tetap'"));
+                    $getJmlTipeKontrak = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS kontrak FROM karyawan WHERE tipe_kar = 'Kontrak'"));
+                    $getJmlTipeMagang = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS magang FROM karyawan WHERE tipe_kar = 'Magang'"));
                 ?>
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -179,7 +177,8 @@
                             <div class="card-content">
                                 <p class="category"><strong>Karyawan Tetap</strong></p>
                                 <h3 class="card-title">
-                                    <?php if(isset($arrJmlTipekar[2])) echo $arrJmlTipekar[2]; else echo 0 ; ?></h3>
+                                    <?php if(isset($getJmlTipeTetap['tetap'])) echo $getJmlTipeTetap['tetap']; else echo 0; ?>
+                                </h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -201,7 +200,8 @@
                             <div class="card-content">
                                 <p class="category"><strong>Karyawan Kontrak</strong></p>
                                 <h3 class="card-title">
-                                    <?php if(isset($arrJmlTipekar[0])) echo $arrJmlTipekar[0]; else echo 0 ; ?></h3>
+                                    <?php if(isset($getJmlTipeKontrak['kontrak'])) echo $getJmlTipeKontrak['kontrak']; else echo 0; ?>
+                                </h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -223,7 +223,8 @@
                             <div class="card-content">
                                 <p class="category"><strong>Karyawan Magang</strong></p>
                                 <h3 class="card-title">
-                                    <?php if(isset($arrJmlTipekar[1])) echo $arrJmlTipekar[1]; else echo 0 ; ?></h3>
+                                    <?php if(isset($getJmlTipeMagang['magang'])) echo $getJmlTipeMagang['magang']; else echo 0; ?>
+                                </h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -237,21 +238,30 @@
 
                 <!-- Card bar chart jumlah Karyawan tiap divisi -->
                 <?php
-                    // Mengubah array nama divisi menjadi array
-                    $getDivisiQuery = mysqli_fetch_array(mysqli_query($konek, "SELECT group_concat(DISTINCT divisi) FROM karyawan"));
-                    $arrDivisi = explode(',', $getDivisiQuery[0]);
-
-                    // Mengambil jumlah array tiap divisi
-                    $getJmlDivisiQuery = mysqli_query($konek, "SELECT COUNT(*) FROM karyawan GROUP BY divisi");
-                    while($data = mysqli_fetch_array($getJmlDivisiQuery)){
-                        // Menambahkan setiap data pada kolom ke array baru
-                        $arrJmlDivisi[] = $data[0];
-                    }
+                    // Array nama-nama divisi
+                    $namaDivisi = [
+                        "Technical Support", 
+                        "Developer", 
+                        "NOC",
+                        "Sales",
+                        "Finance",
+                        "Marketing",
+                        "Billing",
+                    ];
                     
+                    // Mengambil jumlah array tiap divisi
+                    for($i=0; $i<sizeof($namaDivisi); $i++){
+                        $getJmlDivisiQuery[$i] = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS jml_div FROM karyawan WHERE divisi = '".$namaDivisi[$i]."'"));
+                    }
+
                     $dataPoints = array(
-                        array("y" => $arrJmlDivisi[0], "label" => $arrDivisi[0] ),
-                        array("y" => $arrJmlDivisi[1], "label" => $arrDivisi[1] ),
-                        array("y" => $arrJmlDivisi[2], "label" => $arrDivisi[2] )
+                        array("y" => $getJmlDivisiQuery[0]['jml_div'], "label" => $namaDivisi[0] ),
+                        array("y" => $getJmlDivisiQuery[1]['jml_div'], "label" => $namaDivisi[1] ),
+                        array("y" => $getJmlDivisiQuery[2]['jml_div'], "label" => $namaDivisi[2] ),
+                        array("y" => $getJmlDivisiQuery[3]['jml_div'], "label" => $namaDivisi[3] ),
+                        array("y" => $getJmlDivisiQuery[4]['jml_div'], "label" => $namaDivisi[4] ),
+                        array("y" => $getJmlDivisiQuery[5]['jml_div'], "label" => $namaDivisi[5] ),
+                        array("y" => $getJmlDivisiQuery[6]['jml_div'], "label" => $namaDivisi[6] ),
                     );
                 ?>
                 <div class="row">

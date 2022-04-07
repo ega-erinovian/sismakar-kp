@@ -23,6 +23,9 @@
 
     <!--google material icon-->
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
+
+    <!-- Boostrap Tables CSS -->
+    <link rel="stylesheet" href="../<?= URL_CSS ?>/dataTables.bootstrap5.min.css?v=<?php echo time(); ?>" />
 </head>
 
 <body>
@@ -159,10 +162,9 @@
                                                 style="width: 100%">
                                                 <thead>
                                                     <tr>
-
-                                                        <th scope="col">Time</th>
-                                                        <th scope="col">Desc</th>
-                                                        <th scope="col">Admin</th>
+                                                        <th>Time</th>
+                                                        <th>Desc</th>
+                                                        <th>Admin</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -192,10 +194,9 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-
-                                                        <th scope="col">Time</th>
-                                                        <th scope="col">Desc</th>
-                                                        <th scope="col">Admin</th>
+                                                        <th>Time</th>
+                                                        <th>Desc</th>
+                                                        <th>Admin</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -215,9 +216,11 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="../<?= URL_JS ?>/jquery-3.3.1.min.js"></script>
     <script src="../<?= URL_JS ?>/jquery-3.3.1.slim.min.js"></script>
-    <script src="../<?= URL_JS ?>/script.js"></script>
     <script src="../<?= URL_JS ?>/bootstrap.min.js"></script>
     <script src="../<?= URL_JS ?>/popper.min.js"></script>
+    <script src="../<?= URL_JS ?>/script.js"></script>
+    <script src="../<?= URL_JS ?>/jquery.dataTables.min.js"></script>
+    <script src="../<?= URL_JS ?>/dataTables.bootstrap5.min.js"></script>
 
 </body>
 
