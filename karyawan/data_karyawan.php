@@ -44,7 +44,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <a href="#" class="btn btn-primary m-4">+ Tambah Karyawan</a>
+                        <form action="kelola_karyawan.php" method="get" role="form">
+                            <input type="hidden" name="kelola" value="Tambah">
+                            <button class="btn btn-primary m-4">+ Tambah Karyawan</button>
+                        </form>
                     </div>
                 </div>
             </div>
