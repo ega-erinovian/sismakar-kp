@@ -1,4 +1,5 @@
 <?php include '../config.php'; ?>
+<?php include '../model/koneksi.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +36,18 @@
             <!-- Heading Dashboard -->
             <?php require_once "../template/heading-dashboard.php"; ?>
 
+            <!-- Peringatan Hapus Karyawan -->
+            <?php
+                if($_GET['kelola'] == 'Delete'){
+            ?>
+            <div class="alert alert-danger mt-3" role="alert">
+                Anda yakin ingin menghapus karyawan ini? Tekan tombol <b>Submit</b> untuk melanjutkan proses
+                <b>Hapus</b>
+            </div>
+            <?php
+                }
+            ?>
+
             <!-- Card Kelola Karyawan -->
             <div class="row">
                 <div class="col-12">
@@ -63,6 +76,23 @@
                                                 $jenis_kel   = "";
                                                 $status_kar  = "";
                                                 $profile_img = "";
+                                            }else{
+                                                // 'Edit' Condition - Form terisi dengan data didatabase
+                                                $query = mysqli_query($konek, "SELECT * FROM karyawan WHERE id_kar = ".$_GET['id_kar']);
+                                                while($data=mysqli_fetch_array($query)){
+                                                    $id_kar      = $data[0];
+                                                    $nama        = $data[1];
+                                                    $divisi      = $data[2];
+                                                    $jabatan     = $data[3];
+                                                    $tipe_kar    = $data[4];
+                                                    $tgl_masuk   = $data[5];
+                                                    $tgl_selesai = $data[6];
+                                                    $email       = $data[7];
+                                                    $no_telp     = $data[8];
+                                                    $alamat      = $data[9];
+                                                    $jenis_kel   = $data[10];
+                                                    $status_kar  = $data[11];
+                                                }
                                             }
                                         }
                                     ?>

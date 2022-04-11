@@ -82,16 +82,14 @@
                                                 <img src='../assets/img/<?= $profile_img ?>' alt="pas-foto"
                                                     class="mb-3 img-fluid">
                                                 <form action="kelola_karyawan.php" method="get" role="form">
-                                                    <input type="hidden" name="kelola" value="Edit">
                                                     <input type="hidden" name="id_kar" value="<?= $id_kar ?>">
-                                                    <button type="submit" class="btn btn-success mb-3">Edit
-                                                        Karyawan</button>
+                                                    <button type="submit" class="btn btn-success mb-3" nama="kelola"
+                                                        value="Edit">Edit Karyawan</button>
                                                 </form>
                                                 <form action="kelola_karyawan.php" method="get" role="form">
-                                                    <input type="hidden" name="kelola" value="Edit">
                                                     <input type="hidden" name="id_kar" value="<?= $id_kar ?>">
-                                                    <button type="submit" class="btn btn-danger mb-3">Delete
-                                                        Karyawan</button>
+                                                    <button type="submit" class="btn btn-danger mb-3" name="kelola"
+                                                        value="Delete">Delete Karyawan</button>
                                                 </form>
                                             </div>
                                             <div class="col detail-isi">

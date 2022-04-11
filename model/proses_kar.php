@@ -39,9 +39,49 @@
             case 'Tambah':
                 $query = "INSERT INTO karyawan VALUE ('', '$nama', '$divisi', '$jabatan', '$tipe_kar', '$tgl_masuk', '$tgl_selesai', '$email', '$no_telp', '$alamat', '$jenis_kel', '$status_kar', '$new_img_name')";
                 if(mysqli_query($konek, $query)){
-                    $_SESSION['msg'] = "Data Added Successfully"; // send message to database log_activities
+                    $_SESSION['msg'] = "Data Added Successfully"; // send message to table log_activities
                 }else{
                     $_SESSION['msg'] = mysqli_error($konek);
+                }
+                header('Location: ../karyawan/data_karyawan.php?tampil-data=all');
+                break;
+            case 'Edit':
+                if($img_ext != ''){
+                    // Mengambil data profile_img
+                    $profile_img = mysqli_fetch_assoc(mysqli_query($konek, "SELECT profile_img FROM karyawan WHERE `id_kar` = $id_kar"));
+                    
+                    // Jika nama img berbeda dengan yang didatabase, maka file sebelumnya akan dihapus
+                    if($profile_img != $new_img_name){
+                        $path = realpath('../assets/img/'.$profile_img['profile_img']);
+                        unlink($path);
+                    }
+                    $query = "UPDATE karyawan SET `nama`='$nama', `divisi`='$divisi', `jabatan`='$jabatan', `tipe_kar`='$tipe_kar', `tgl_masuk`='$tgl_masuk', `tgl_selesai`='$tgl_selesai', `email`='$email', `no_telp`='$no_telp', `alamat`='$alamat', `jenis_kel`='$jenis_kel', `status_kar`='$status_kar', `profile_img`='$new_img_name' WHERE `id_kar` = $id_kar";            
+                }else{
+                    $query = "UPDATE karyawan SET `nama`='$nama', `divisi`='$divisi', `jabatan`='$jabatan', `tipe_kar`='$tipe_kar', `tgl_masuk`='$tgl_masuk', `tgl_selesai`='$tgl_selesai', `email`='$email', `no_telp`='$no_telp', `alamat`='$alamat', `jenis_kel`='$jenis_kel', `status_kar`='$status_kar' WHERE `id_kar` = $id_kar";            
+                }
+                
+                if(mysqli_query($konek, $query)){
+                    $_SESSION['msg'] = "Data Updated Successfully"; // send message to table log_activities
+                }else{
+                    $_SESSION['msg'] = mysqli_error($konek);
+                }
+                
+                header('Location: ../karyawan/data_karyawan.php?tampil-data=all');
+                break;
+            case 'Delete':
+                $profile_img = mysqli_fetch_assoc(mysqli_query($konek, "SELECT profile_img FROM karyawan WHERE id_kar='$_POST[id_kar]'"));
+                $query = "DELETE FROM `karyawan` WHERE `id_kar` = '$_POST[id_kar]'";
+                $path = realpath('../assets/img/'.$profile_img['profile_img']);
+                if(is_writable($path)){
+                    if(unlink($path)){
+                        if(mysqli_query($konek, $query)){
+                            $_SESSION['msg'] = "Data Deleted Successfully"; // send message to database log_activities
+                        }else{
+                            $_SESSION['msg'] = mysqli_error($konek);
+                        }
+                    }else{
+                        $_SESSION['msg'] = "Data cannot be deleted, image not found, delete the data using MySQL";
+                    }
                 }
                 header('Location: ../karyawan/data_karyawan.php?tampil-data=all');
                 break;
