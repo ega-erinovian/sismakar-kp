@@ -132,10 +132,7 @@
                                                         <tr>
                                                             <td class="detail-keterangan"><span>Tanggal masuk</span>
                                                             </td>
-                                                            <td class="detail-bio">
-                                                                <?php
-                                                                    echo(date("Y-m-d H:i:s",$tgl_masuk));
-                                                                ?>
+                                                            <td class="detail-bio"><?= date("Y-m-d H:i:s",$tgl_masuk);?>
                                                             </td>
                                                         </tr>
                                                         <tr>

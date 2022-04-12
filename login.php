@@ -13,9 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <title><?= SITENAME ?></title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?= URL_CSS ?>/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?= URL_CSS ?>/bootstrap.min.css?v=<?php echo time(); ?>" />
     <!----css3---->
-    <link rel="stylesheet" href="<?= URL_CSS ?>/custom.css" />
+    <link rel="stylesheet" href="<?= URL_CSS ?>/custom.css?v=<?php echo time(); ?>" />
     <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -82,7 +82,24 @@
     <script src="<?= URL_JS ?>/jquery-3.3.1.slim.min.js"></script>
     <script src="<?= URL_JS ?>/bootstrap.min.js"></script>
     <script src="<?= URL_JS ?>/popper.min.js"></script>
+    <!-- Prevent special characters on input form -->
+    <script>
+    // Username
+    $(document).ready(function() {
+        $(document).on("keyup", "#inputUsername", function() {
+            $("#inputUsername").val($("#inputUsername").val().replace(/[^a-zA-Z0-9\s]/gi, '').replace(
+                /[_\s]/g, ''));
+        });
+    });
 
+    // Password
+    $(document).ready(function() {
+        $(document).on("keyup", "#inputPass", function() {
+            $("#inputPass").val($("#inputPass").val().replace(/[^a-zA-Z0-9\s]/gi, '').replace(
+                /[_\s]/g, ''));
+        });
+    });
+    </script>
 </body>
 
 </html>

@@ -72,26 +72,26 @@
                     <ul class="collapse list-unstyled menu" id="dropdownKaryawan">
                         <li>
                             <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                                <input type="hidden" value="all" name="tampil-data">
-                                <button type="submit" class="btn btn-link">Semua Karyawan</button>
+                                <button type="submit" class="btn btn-link" value="all" name="tampil-data">Semua
+                                    Karyawan</button>
                             </form>
                         </li>
                         <li>
                             <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                                <input type="hidden" value="tetap" name="tampil-data">
-                                <button type="submit" class="btn btn-link">Karyawan Tetap</button>
+                                <button type="submit" class="btn btn-link" value="tetap" name="tampil-data">Karyawan
+                                    Tetap</button>
                             </form>
                         </li>
                         <li>
                             <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                                <input type="hidden" value="kontrak" name="tampil-data">
-                                <button type="submit" class="btn btn-link">Karyawan Kontrak</button>
+                                <button type="submit" class="btn btn-link" value="kontrak" name="tampil-data">Karyawan
+                                    Kontrak</button>
                             </form>
                         </li>
                         <li>
                             <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                                <input type="hidden" value="magang" name="tampil-data">
-                                <button type="submit" class="btn btn-link">Karyawan Magang</button>
+                                <button type="submit" class="btn btn-link" value="magang" name="tampil-data">Karyawan
+                                    Magang</button>
                             </form>
                         </li>
                     </ul>
@@ -104,7 +104,7 @@
                             class="material-icons"> person </i><span>Admin</span></a>
                     <ul class="collapse list-unstyled menu text-dark" id="dropdownAdmin">
                         <li>
-                            <a href="#"><i class="material-icons">edit</i>Edit Profile</a>
+                            <a href="admin/kelola_admin.php"><i class="material-icons">edit</i>Edit Profile</a>
                         </li>
                         <li>
                             <a href="#"><i class="material-icons">history</i>Log Activity</a>
@@ -180,7 +180,7 @@
                             <div class="card-footer">
                                 <div class="stats">
                                     <i class="material-icons text-info">info</i>
-                                    <a href="#">See detailed report</a>
+                                    <a href="karyawan/data_karyawan.php?tampil-data=all">See detailed report</a>
                                 </div>
                             </div>
                         </div>
@@ -203,7 +203,7 @@
                             <div class="card-footer">
                                 <div class="stats">
                                     <i class="material-icons text-info">info</i>
-                                    <a href="#">See detailed report</a>
+                                    <a href="karyawan/data_karyawan.php?tampil-data=tetap">See detailed report</a>
                                 </div>
                             </div>
                         </div>
@@ -226,7 +226,7 @@
                             <div class="card-footer">
                                 <div class="stats">
                                     <i class="material-icons text-info">info</i>
-                                    <a href="#">See detailed report</a>
+                                    <a href="karyawan/data_karyawan.php?tampil-data=kontrak">See detailed report</a>
                                 </div>
                             </div>
                         </div>
@@ -249,7 +249,7 @@
                             <div class="card-footer">
                                 <div class="stats">
                                     <i class="material-icons text-info">info</i>
-                                    <a href="#">See detailed report</a>
+                                    <a href="karyawan/data_karyawan.php?tampil-data=magang">See detailed report</a>
                                 </div>
                             </div>
                         </div>
