@@ -1,4 +1,7 @@
-<?php require_once 'config.php'; ?>
+<?php 
+    session_start();
+    require_once 'config.php'; 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,27 +28,47 @@
 </head>
 
 <body>
-
     <section class="login-page">
         <div class="container h-100">
+            <div class="row">
+                <div class="col-12 position-relative">
+                    <?php
+                        if(isset($_SESSION['login'])){
+                    ?>
+                    <div class="alert alert-danger alert-dismissible fade show mt-3 w-100 position-absolute"
+                        role="alert">
+                        <?= $_SESSION['login']; ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php
+                        unset($_SESSION['login']);
+                        }
+                    ?>
+                </div>
+            </div>
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <!-- Card Login -->
                     <div class="card shadow-lg" style="border-radius: 1rem;">
                         <div class="card-body p-5">
                             <!-- Form Login -->
-                            <form action="index.php">
+                            <form action="model/proses_login.php" method="POST" enctype="multipart/form-data">
                                 <img src="https://i1.wp.com/2017.jakarta.wordcamp.org/files/2017/10/logo-rumahweb-panjang-tr-1.png?fit=1000%2C259&ssl=1"
                                     class="img-fluid mb-5" />
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="typeEmailX-2">Username</label>
-                                    <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
+                                    <label class="form-label" for="inputUsername">Username</label>
+                                    <input type="text" id="inputUsername" class="form-control form-control-lg"
+                                        name="username" />
                                 </div>
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="typePasswordX-2">Password</label>
-                                    <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
+                                    <label class="form-label" for="inputPass">Password</label>
+                                    <input type="password" id="inputPass" class="form-control form-control-lg"
+                                        name="password" />
                                 </div>
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+                                <button class="btn btn-primary btn-lg btn-block" name="aksi" value="Login"
+                                    type="submit">Login</button>
                             </form>
                         </div>
                     </div>
@@ -56,6 +79,7 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="<?= URL_JS ?>/jquery-3.3.1.slim.min.js"></script>
     <script src="<?= URL_JS ?>/bootstrap.min.js"></script>
     <script src="<?= URL_JS ?>/popper.min.js"></script>
 

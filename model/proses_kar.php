@@ -1,6 +1,12 @@
 <?php
-    include 'koneksi.php';
     session_start();
+    
+    // Kondisi jika belum login - akan dikirim lagi ke login.php
+    if (!isset($_SESSION["username"])) {
+        $_SESSION['login'] = "Anda harus login untuk mengakses halaman ini";
+        header('Location:../login.php');
+    }
+    include 'koneksi.php';
 
     // Proses Karyawan
     if(isset($_POST)){

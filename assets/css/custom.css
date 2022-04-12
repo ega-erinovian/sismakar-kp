@@ -74,7 +74,10 @@ ol {
 
 a,
 a:hover,
-a:focus {
+a:focus,
+.btn-link,
+.btn-link:hover,
+.btn-link:focus {
   color: #333;
   text-decoration: none;
   transition: all 0.3s;
@@ -164,22 +167,24 @@ label {
   padding: 2px 7px;
 }
 
-#sidebar ul li a:hover {
-  color: #333;
-  background-color: rgba(200, 200, 200, 0.2);
-}
-
 .dropdown-toggle::after {
   position: absolute;
   right: 10px;
   top: 25px;
 }
 
+#sidebar ul li a:hover,
+#sidebar ul li .btn-link:hover {
+  color: #333;
+  background-color: rgba(200, 200, 200, 0.2);
+}
+
 #sidebar ul.components {
   padding: 1rem 0;
 }
 
-#sidebar ul li a {
+#sidebar ul li a,
+#sidebar ul li .btn-link {
   padding: 10px;
   line-height: 2rem;
   border-radius: 5px;
@@ -187,14 +192,18 @@ label {
   position: relative;
   font-weight: 400;
   display: block;
+  text-align: start !important;
+  width: 100%;
 }
 
-#sidebar ul li a span {
+#sidebar ul li a span,
+#sidebar ul li .btn-link span {
   text-transform: capitalize;
   display: inline-block;
 }
 
-#sidebar ul li a i {
+#sidebar ul li a i,
+#sidebar ul li .btn-link i {
   position: relative;
   margin-right: 10px;
   top: 5px;
@@ -308,7 +317,8 @@ label {
     transition: all 0.5s ease;
   }
 
-  #sidebar.active ul li a span {
+  #sidebar.active ul li a span,
+  #sidebar ul li .btn-link span {
     display: none;
     transition: all 0.5s ease;
   }

@@ -1,5 +1,22 @@
-<?php require_once 'config.php'; ?>
-<?php include 'model/koneksi.php';?>
+<?php
+    session_start();
+    
+    // Kondisi jika belum login - akan dikirim lagi ke login.php
+    if (!isset($_SESSION["username"])) {
+        $_SESSION['login'] = "Anda harus login untuk mengakses halaman ini";
+        header('Location:login.php');
+    }
+    
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 900)) {
+        session_destroy();
+        session_unset();
+    }
+    
+    $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time
+    
+    require_once 'config.php'; 
+    include 'model/koneksi.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,25 +73,25 @@
                         <li>
                             <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
                                 <input type="hidden" value="all" name="tampil-data">
-                                <button type="submit" class="a btn btn-link">Semua Karyawan</button>
+                                <button type="submit" class="btn btn-link">Semua Karyawan</button>
                             </form>
                         </li>
                         <li>
                             <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
                                 <input type="hidden" value="tetap" name="tampil-data">
-                                <button type="submit" class="a btn btn-link">Karyawan Tetap</button>
+                                <button type="submit" class="btn btn-link">Karyawan Tetap</button>
                             </form>
                         </li>
                         <li>
                             <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
                                 <input type="hidden" value="kontrak" name="tampil-data">
-                                <button type="submit" class="a btn btn-link">Karyawan Kontrak</button>
+                                <button type="submit" class="btn btn-link">Karyawan Kontrak</button>
                             </form>
                         </li>
                         <li>
                             <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
                                 <input type="hidden" value="magang" name="tampil-data">
-                                <button type="submit" class="a btn btn-link">Karyawan Magang</button>
+                                <button type="submit" class="btn btn-link">Karyawan Magang</button>
                             </form>
                         </li>
                     </ul>
@@ -93,7 +110,10 @@
                             <a href="#"><i class="material-icons">history</i>Log Activity</a>
                         </li>
                         <li>
-                            <a href="#"><i class="material-icons">logout</i>Log out</a>
+                            <form action="model/proses_login.php" method="POST" enctype="multipart/form-data">
+                                <button class="btn btn-link btn-block" name="aksi" value="Logout" type="submit">
+                                    <i class="material-icons">logout</i>Logout</button>
+                            </form>
                         </li>
                     </ul>
                 </li>
@@ -354,9 +374,9 @@
 
     }
     </script>
-    <script src="<?= URL_JS ?>/script.js"></script>
     <script src="<?= URL_JS ?>/bootstrap.min.js"></script>
     <script src="<?= URL_JS ?>/popper.min.js"></script>
+    <script src="<?= URL_JS ?>/script.js"></script>
 
 </body>
 

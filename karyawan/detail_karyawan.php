@@ -1,5 +1,22 @@
-<?php require_once '../config.php'; ?>
-<?php include '../model/koneksi.php';?>
+<?php
+    session_start();
+    
+    // Kondisi jika belum login - akan dikirim lagi ke login.php
+    if (!isset($_SESSION["username"])) {
+        $_SESSION['login'] = "Anda harus login untuk mengakses halaman ini";
+        header('Location:../login.php');
+    }
+    
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 900)) {
+        session_destroy();
+        session_unset();
+    }
+    
+    $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time
+    
+    require_once '../config.php'; 
+    include '../model/koneksi.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +100,7 @@
                                                     class="mb-3 img-fluid">
                                                 <form action="kelola_karyawan.php" method="get" role="form">
                                                     <input type="hidden" name="id_kar" value="<?= $id_kar ?>">
-                                                    <button type="submit" class="btn btn-success mb-3" nama="kelola"
+                                                    <button type="submit" class="btn btn-success mb-3" name="kelola"
                                                         value="Edit">Edit Karyawan</button>
                                                 </form>
                                                 <form action="kelola_karyawan.php" method="get" role="form">
