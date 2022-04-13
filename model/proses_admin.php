@@ -8,6 +8,8 @@
     }
     
     include 'koneksi.php';
+
+    $waktu = time();
     
     if(isset($_POST)){
         $id_admin   = $_POST['id_admin'];
@@ -33,6 +35,19 @@
         }
         
         if(mysqli_query($konek, $query)){
+            // Send message to log_activity table
+            if($username != $tmp_username){
+                $query = "INSERT INTO log_activity VALUE ('', '$waktu', 'Edited admin_$id_admin username to $username', '', '$id_admin');";
+                $result = mysqli_query($konek, $query);
+            }
+
+            if($password != ""){
+                if(!password_verify($password, $tmp_password)){
+                    $query = "INSERT INTO log_activity VALUE ('', '$waktu', 'Edited admin_$id_admin password', '', '$id_admin');";
+                    $result = mysqli_query($konek, $query);
+                }
+            }
+            
             $_SESSION['msg'] = "Data Updated Successfully"; // send message to database log_activities
         }else{
             $_SESSION['msg'] = mysqli_error($konek);

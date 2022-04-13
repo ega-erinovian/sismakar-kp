@@ -70,10 +70,10 @@
                     class="material-icons"> person </i><span>Admin</span></a>
             <ul class="collapse list-unstyled menu text-dark" id="dropdownAdmin">
                 <li>
-                    <a href="#"><i class="material-icons">edit</i>Edit Profile</a>
+                    <a href="../admin/kelola_admin.php"><i class="material-icons">edit</i>Edit Profile</a>
                 </li>
                 <li>
-                    <a href="#"><i class="material-icons">history</i>Log Activity</a>
+                    <a href="../admin/log_admin.php"><i class="material-icons">history</i>Log Activity</a>
                 </li>
                 <li>
                     <form action="../model/proses_login.php" method="POST" enctype="multipart/form-data">

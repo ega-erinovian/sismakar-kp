@@ -179,7 +179,7 @@
                                                     <tr>
                                                         <th>Time</th>
                                                         <th>Desc</th>
-                                                        <th>Admin</th>
+                                                        <th>Admin ID</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -206,7 +206,7 @@
                                                     <tr>
                                                         <th>Time</th>
                                                         <th>Desc</th>
-                                                        <th>Admin</th>
+                                                        <th>Admin ID</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
