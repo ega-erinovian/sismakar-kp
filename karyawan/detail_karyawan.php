@@ -93,6 +93,9 @@
                                                 $jenis_kel   = $data[10];
                                                 $status_kar  = $data[11];
                                                 $profile_img = $data[12];
+
+                                                if($profile_img == "")
+                                                    $profile_img = "empty_pfp.webp";
                                         ?>
                                         <div class="row">
                                             <div class="col-md-4 text-center">
@@ -180,29 +183,24 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <!-- Tab Log Aktivitas Karyawan -->
+                                                    <?php
+                                                        date_default_timezone_set("Asia/Jakarta");
+                                                        $query = mysqli_query($konek, "SELECT * FROM log_activity WHERE id_kar = $_GET[id_kar]");
+                                                        while($data=mysqli_fetch_array($query)){
+                                                            $id_kar      = $data[0];
+                                                            $timestamp   = $data[1];
+                                                            $deskripsi   = $data[2];
+                                                            $id_kar      = $data[3];
+                                                            $id_admin    = $data[4];
+                                                        ?>
                                                     <tr>
-                                                        <td>2022-03-09 14:00:10</td>
-                                                        <td>Created Karyawan[1]</td>
-                                                        <td>Admin_1</td>
+
+                                                        <td><?= date("Y-m-d H:i:s", $timestamp);?></td>
+                                                        <td><?= $deskripsi ?></td>
+                                                        <td><?= $id_admin ?></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>2022-03-09 15:03:15</td>
-                                                        <td>Edited Karyawan[1] Name to "Shyla Georgie Irvin"
-                                                        </td>
-                                                        <td>Admin_1</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2023-01-09 12:00:15</td>
-                                                        <td>Edited Karyawan[1] Division to "Frontend Developer"
-                                                        </td>
-                                                        <td>Admin_2</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2023-01-09 12:10:05</td>
-                                                        <td>Edited Karyawan[1] Division to "Backend Developer"
-                                                        </td>
-                                                        <td>Admin_1</td>
-                                                    </tr>
+                                                    <?php }; ?>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>

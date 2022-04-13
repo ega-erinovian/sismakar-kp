@@ -555,7 +555,8 @@ table > tbody > tr > td:nth-child(6) {
 .detail-karyawan .navbar-tabs .card .detail-content img {
   max-width: 300px;
   max-height: 400px;
-  overflow: hidden;
+  object-fit: cover;
+  object-position: top;
 }
 
 .log-admin h1 {
