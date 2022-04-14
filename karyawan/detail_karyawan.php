@@ -1,9 +1,10 @@
 <?php
     session_start();
+    require_once '../config.php'; 
     
     // Kondisi jika belum login - akan dikirim lagi ke login.php
     if (!isset($_SESSION["username"])) {
-        $_SESSION['login'] = "Anda harus login untuk mengakses halaman ini";
+        $_SESSION['login'] = ACCESS_DENIED;
         header('Location:../login.php');
     }
     
@@ -14,7 +15,6 @@
     
     $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time
     
-    require_once '../config.php'; 
     include '../model/koneksi.php';
 ?>
 
@@ -101,13 +101,11 @@
                                             <div class="col-md-4 text-center">
                                                 <img src='../assets/img/<?= $profile_img ?>' alt="pas-foto"
                                                     class="mb-3 img-fluid">
-                                                <form action="kelola_karyawan.php" method="get" role="form">
+                                                <form action="kelola_karyawan.php" method="post"
+                                                    enctype="multipart/form-data" role="form">
                                                     <input type="hidden" name="id_kar" value="<?= $id_kar ?>">
                                                     <button type="submit" class="btn btn-success mb-3" name="kelola"
                                                         value="Edit">Edit Karyawan</button>
-                                                </form>
-                                                <form action="kelola_karyawan.php" method="get" role="form">
-                                                    <input type="hidden" name="id_kar" value="<?= $id_kar ?>">
                                                     <button type="submit" class="btn btn-danger mb-3" name="kelola"
                                                         value="Delete">Delete Karyawan</button>
                                                 </form>

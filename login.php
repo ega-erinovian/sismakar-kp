@@ -35,7 +35,7 @@
                     <?php
                         if(isset($_SESSION['login'])){
                     ?>
-                    <div class="alert alert-danger alert-dismissible fade show mt-3 w-100 position-absolute"
+                    <div class="alert alert-primary alert-dismissible fade show mt-3 w-100 position-absolute"
                         role="alert">
                         <?= $_SESSION['login']; ?>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -43,7 +43,7 @@
                         </button>
                     </div>
                     <?php
-                        unset($_SESSION['login']);
+                        session_unset();
                         }
                     ?>
                 </div>

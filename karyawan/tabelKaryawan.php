@@ -9,19 +9,20 @@
             $email       = $data[7];
             $no_telp     = $data[8];
             $status_kar  = $data[11];
-            echo "<tr>
+            echo "
+            <tr>
                 <td>$nama</td>
-<td>$divisi</td>
-<td>$jabatan</td>
-<td>$no_telp</td>
-<td>$email</td>
-<td>$status_kar</td>
-<td>
-    <form action='../karyawan/detail_karyawan.php' method='GET'>
-        <input type='hidden' value='$id_kar' name='id_kar'>
-        <button type='submit' class='btn btn-primary'>detail</button>
-    </form>
-</td>
-</tr>";
+                <td>$divisi</td>
+                <td>$jabatan</td>
+                <td>$no_telp</td>
+                <td>$email</td>
+                <td>$status_kar</td>
+                <td>
+                    <form action='../karyawan/detail_karyawan.php' method='GET'>
+                        <button type='submit' class='btn btn-primary' value='$id_kar' name='id_kar'>detail</button>
+                    </form>
+                </td>
+            </tr>";
+            
         }
     }

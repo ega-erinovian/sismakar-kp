@@ -1,13 +1,13 @@
 <?php 
     session_start();
+    require_once '../config.php';
     
     // Kondisi jika belum login - akan dikirim lagi ke login.php
     if (!isset($_SESSION["username"])) {
-        $_SESSION['login'] = "Anda harus login untuk mengakses halaman ini";
+        $_SESSION['login'] = ACCESS_DENIED;
         header('Location:../login.php');
     }
     
-    require_once '../config.php';
     include '../model/koneksi.php';
 ?>
 

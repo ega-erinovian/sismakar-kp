@@ -5,3 +5,5 @@
     //URL ASSETS
     define('URL_CSS', 'assets/css'); //CSS
     define('URL_JS', 'assets/js'); //JS
+
+    define('ACCESS_DENIED', "Anda harus login untuk mengakses sistem");

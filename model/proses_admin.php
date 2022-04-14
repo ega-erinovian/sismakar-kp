@@ -1,9 +1,10 @@
 <?php
     session_start();
+    require_once '../config.php';
     
     // Kondisi jika belum login - akan dikirim lagi ke login.php
     if (!isset($_SESSION["username"])) {
-        $_SESSION['login'] = "Anda harus login untuk mengakses halaman ini";
+        $_SESSION['login'] = ACCESS_DENIED;
         header('Location:../login.php');
     }
     
@@ -48,9 +49,9 @@
                 }
             }
             
-            $_SESSION['msg'] = "Data Updated Successfully"; // send message to database log_activities
+            $_SESSION['login'] = "Data updated successfully."; // send message to database log_activities
         }else{
-            $_SESSION['msg'] = mysqli_error($konek);
+            $_SESSION['login'] = mysqli_error($konek);
         }
-        header('Location: ../admin/kelola_admin.php');
+        header('Location:../login.php');
     }

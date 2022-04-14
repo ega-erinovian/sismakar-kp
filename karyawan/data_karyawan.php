@@ -1,9 +1,10 @@
 <?php
     session_start();
+    include '../config.php'; 
     
     // Kondisi jika belum login - akan dikirim lagi ke login.php
     if (!isset($_SESSION["username"])) {
-        $_SESSION['login'] = "Anda harus login untuk mengakses halaman ini";
+        $_SESSION['login'] = ACCESS_DENIED;
         header('Location:../login.php');
     }
     
@@ -14,7 +15,6 @@
     
     $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time
     
-    require_once '../config.php'; 
     include '../model/koneksi.php';
 ?>
 
@@ -42,7 +42,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
 
     <!-- Boostrap Tables CSS -->
-    <link rel="stylesheet" href="../<?= URL_CSS ?>/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="../<?= URL_CSS ?>/dataTables.bootstrap5.min.css?v=<?= time(); ?>" />
 </head>
 
 <body>
@@ -76,9 +76,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form action="kelola_karyawan.php" method="get" role="form">
-                            <input type="hidden" name="kelola" value="Tambah">
-                            <button class="btn btn-primary m-4">+ Tambah Karyawan</button>
+                        <form action="kelola_karyawan.php" method="post" role="form">
+                            <button class="btn btn-primary m-4" name="kelola" value="Tambah">+ Tambah Karyawan</button>
                         </form>
                     </div>
                 </div>

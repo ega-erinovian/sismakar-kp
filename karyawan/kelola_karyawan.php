@@ -1,9 +1,10 @@
 <?php
     session_start();
+    require_once '../config.php'; 
     
     // Kondisi jika belum login - akan dikirim lagi ke login.php
     if (!isset($_SESSION["username"])) {
-        $_SESSION['login'] = "Anda harus login untuk mengakses halaman ini";
+        $_SESSION['login'] = ACCESS_DENIED;
         header('Location:../login.php');
     }
     
@@ -14,7 +15,6 @@
     
     $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time
     
-    require_once '../config.php'; 
     include '../model/koneksi.php';
 ?>
 
@@ -55,7 +55,7 @@
 
             <!-- Peringatan Hapus Karyawan -->
             <?php
-                if($_GET['kelola'] == 'Delete'){
+                if($_POST['kelola'] == 'Delete'){
             ?>
             <div class="alert alert-danger mt-3" role="alert">
                 Anda yakin ingin menghapus karyawan ini? Tekan tombol <b>Submit</b> untuk melanjutkan proses
@@ -70,16 +70,16 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3><?= $_GET['kelola'] ?> Karyawan</h3>
+                            <h3><?= $_POST['kelola'] ?> Karyawan</h3>
                         </div>
                         <div class="card-body">
                             <!-- Form kelola karyawan -->
                             <form class="row g-3" action="../model/proses_kar.php" method="post"
                                 enctype="multipart/form-data">
                                 <?php
-                                        if(isset($_GET['kelola'])){
+                                        if(isset($_POST['kelola'])){
                                             // 'Tambah' condition - form dikosongkan
-                                            if($_GET['kelola'] == 'Tambah'){
+                                            if($_POST['kelola'] == 'Tambah'){
                                                 $id_kar      = "";
                                                 $nama        = "";
                                                 $divisi      = "";
@@ -95,7 +95,7 @@
                                                 $profile_img = "";
                                             }else{
                                                 // 'Edit' Condition - Form terisi dengan data didatabase
-                                                $query = mysqli_query($konek, "SELECT * FROM karyawan WHERE id_kar = ".$_GET['id_kar']);
+                                                $query = mysqli_query($konek, "SELECT * FROM karyawan WHERE id_kar = ".$_POST['id_kar']);
                                                 while($data=mysqli_fetch_array($query)){
                                                     $id_kar      = $data[0];
                                                     $nama        = $data[1];
@@ -113,7 +113,7 @@
                                             }
                                         }
                                     ?>
-                                <input type="hidden" name="kelola" value="<?= $_GET['kelola'] ?>" />
+                                <input type="hidden" name="kelola" value="<?= $_POST['kelola'] ?>" />
                                 <input type="hidden" name="id_kar" value="<?= $id_kar ?>">
                                 <div class="col-12 mb-3">
                                     <label for="inputNama" class="form-label">Nama</label>
