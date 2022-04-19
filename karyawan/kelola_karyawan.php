@@ -127,7 +127,9 @@
                                         <option <?php if($divisi=="Technical Support") echo 'selected'; ?>>Technical
                                             Support</option>
                                         <option <?php if($divisi=="Developer") echo 'selected'; ?>>Developer</option>
-                                        <option <?php if($divisi=="NOC") echo 'selected'; ?>>NOC</option>
+                                        <option <?php if($divisi=="Network Operation Center") echo 'selected'; ?>>
+                                            Network Operation Center
+                                        </option>
                                         <option <?php if($divisi=="Sales") echo 'selected'; ?>>Sales</option>
                                         <option <?php if($divisi=="Finance") echo 'selected'; ?>>Finance</option>
                                         <option <?php if($divisi=="Marketing") echo 'selected'; ?>>Marketing</option>
@@ -220,6 +222,23 @@
     <script type="text/javascript" src="../<?= URL_JS ?>/popper.min.js"></script>
     <script type="text/javascript" src="../<?= URL_JS ?>/bootstrap.min.js"></script>
     <script type="text/javascript" src="../<?= URL_JS ?>/script.js"></script>
+    <script>
+    // Image upload size limit
+    var MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
+    $(document).ready(function() {
+        $("#uploadImg").change(function() {
+            fileSize = this.files[0].size;
+            if (fileSize > MAX_FILE_SIZE) {
+                this.setCustomValidity("File must not exceed 5 MB!");
+                this.reportValidity();
+                this.value = "";
+            } else {
+                this.setCustomValidity("");
+            }
+        });
+    });
+    </script>
 </body>
 
 </html>

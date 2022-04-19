@@ -28,6 +28,7 @@ html {
   padding: 0px;
   height: 100vh;
   overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 h1,
@@ -91,6 +92,18 @@ label {
   font-weight: 600;
 }
 
+::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transp; /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #b1b1b1; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+}
 /*=======================================================
   material-icons  copy & paste form site google material-icons
   ==================================================*/
@@ -516,10 +529,9 @@ main-content inner design like card start
   position: relative;
 }
 
-.card-about {
-  height: 550px;
-  background-position: center;
-  background-size: cover;
+.navbar-tabs .card .announcement-content .announce-item {
+  max-height: 60vh;
+  overflow-y: scroll;
 }
 
 table > tbody > tr > td:nth-child(6) {

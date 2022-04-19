@@ -15,8 +15,8 @@ $(document).ready(function () {
   $(".data-table").each(function (_, table) {
     $(table).DataTable({
       lengthMenu: [
-        [5, 10, 25, 50, 100, -1],
-        [5, 10, 25, 50, 100, "All"],
+        [10, 25, 50, 100, -1],
+        [10, 25, 50, 100, "All"],
       ],
       createdRow: function (row, data) {
         if (data[5].toLowerCase() === "aktif") {
@@ -34,9 +34,10 @@ $(document).ready(function () {
   $(".log-table").each(function (_, table) {
     $(table).DataTable({
       lengthMenu: [
-        [5, 10, 25, 50, 100, -1],
-        [5, 10, 25, 50, 100, "All"],
+        [10, 25, 50, 100, -1],
+        [10, 25, 50, 100, "All"],
       ],
+      order: [[0, "desc"]],
     });
   });
 });

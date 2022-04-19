@@ -9,8 +9,8 @@
     }
     
     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 900)) {
-        session_destroy();
         session_unset();
+        session_destroy();
     }
     
     $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time
@@ -52,8 +52,7 @@
         <nav id="sidebar">
             <!-- Heading Sidebar -->
             <div class="sidebar-header">
-                <img src="https://i1.wp.com/2017.jakarta.wordcamp.org/files/2017/10/logo-rumahweb-panjang-tr-1.png?fit=1000%2C259&ssl=1"
-                    class="img-fluid" />
+                <img src=<?= RUMAHWEB_LOGO ?> class="img-fluid" />
             </div>
 
             <!-- List link -->
@@ -150,6 +149,92 @@
             <div class="index main-content">
                 <!-- Heading Dashboard -->
                 <?php require_once "template/heading-dashboard.php"; ?>
+
+                <!-- Card Navtabs About + Organizaional Structure -->
+                <div class="navbar-tabs">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item nav-announce">
+                                        <a href="#announce-tab" class="nav-link active" role="tab"
+                                            data-toggle="tab">Announcement</a>
+                                    </li>
+                                    <li class="nav-item nav-about">
+                                        <a href="#about" class="nav-link" role="tab" data-toggle="tab">About</a>
+                                    </li>
+                                    <li class="nav-item nav-org-structure">
+                                        <a href="#org-struct" class="nav-link" role="tab" data-toggle="tab">Organization
+                                            Structure</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="announcement-content tab-pane active" role="tabpanel" id="announce-tab">
+                                        <div class="p-4">
+                                            <h1>
+                                                Announcement
+                                            </h1>
+                                            <div class="announce-item">
+                                                <?php
+                                                $query = mysqli_query($konek, "SELECT * FROM karyawan");
+                                                while($data=mysqli_fetch_array($query)){
+                                                    $id_kar      = $data[0];
+                                                    $nama        = $data[1];
+                                                    $tgl_selesai = $data[6];
+                                                    $status_kar  = $data[11];
+                                                    
+                                                    if($tgl_selesai < time() && $status_kar == "Aktif"){
+                                                        $_SESSION['announce'] = "Karyawan_".$id_kar.": <b>".$nama."</b> sudah mencapai tanggal selesai masa kerja.";
+                                            ?>
+                                                <div class="alert alert-danger alert-dismissible fade show mr-1"
+                                                    role="alert">
+                                                    <form action="karyawan/detail_karyawan.php" method="get"
+                                                        enctype="multipart/form-data">
+                                                        <span><?= $_SESSION['announce']; ?></span>
+                                                        <button class="btn btn-danger btn-sm ml-2" type="submit"
+                                                            value=<?= $id_kar ?> name="id_kar"> <b>See Detail</b>
+                                                        </button>
+                                                    </form>
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <?php
+                                                }
+                                                unset($_SESSION['announce']);
+                                            }
+                                            ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="about-content tab-pane" role="tabpanel" id="about">
+                                        <div class="about-container p-4">
+                                            <h1>About</h1>
+                                            <p>Didirikan pada tahun 2002 di Yogyakarta, Rumahweb Indonesia tumbuh
+                                                menjadi salah satu perusahaan hosting terbesar di Indonesia yang kini
+                                                melayani lebih dari 14.000 domain pelanggan. Berawal dari 1 server, kini
+                                                Rumahweb telah memiliki lebih dari 30 server untuk melayani hosting dan
+                                                VPS/Cloud.
+
+                                                Pertumbuhan ini tidak lepas dari penanaman sikap dan kesadaran bahwa
+                                                bisnis ini dibangun atas kepercayaan pelanggan terhadap Rumahweb
+                                                sehingga seluruh aktivitas yang ada didalamnya hanya bertujuan untuk
+                                                satu hal saja, yakni menjamin kepercayaan pelanggan terhadap Rumahweb
+                                                dapat kami jaga dengan segala konsekuensinya. Harga mati sebuah komitmen
+                                                yang kami tanamkan diseluruh jajaran manajemen dan karyawan.</p>
+                                        </div>
+                                    </div>
+                                    <div class="org-structure-content tab-pane" role="tabpanel" id="org-struct">
+                                        <img class="p-4"
+                                            src="https://sdn-117gresik.sch.id/wp-content/uploads/2021/02/Salinan-dari-Minarsihs.pd_.sd-President_COO_20210218_113442.png"
+                                            alt="struktur-organisasi" width="100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Card Jumlah Karyawan -->
                 <?php
@@ -262,7 +347,7 @@
                     $namaDivisi = [
                         "Technical Support", 
                         "Developer", 
-                        "NOC",
+                        "Network Operation Center",
                         "Sales",
                         "Finance",
                         "Marketing",
@@ -296,53 +381,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Card Navtabs About + Organizaional Structure -->
-                <div class="navbar-tabs">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card">
-                                <ul class="nav nav-tabs">
-                                    <li class="nav-item nav-about">
-                                        <a href="#about" class="nav-link active" role="tab" data-toggle="tab">About</a>
-                                    </li>
-                                    <li class="nav-item nav-org-structure">
-                                        <a href="#org-struct" class="nav-link" role="tab" data-toggle="tab">Organization
-                                            Structure</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div class="about-content tab-pane active" role="tabpanel" id="about">
-                                        <div class="about-container p-4">
-                                            <h1>About</h1>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Sem et tortor
-                                                consequat id porta nibh venenatis. Sagittis orci a scelerisque purus
-                                                semper. Nunc consequat interdum varius sit amet mattis vulputate enim
-                                                nulla. Curabitur vitae nunc sed velit. Quis imperdiet massa tincidunt
-                                                nunc pulvinar sapien et ligula. Feugiat pretium nibh ipsum consequat. Eu
-                                                consequat ac felis donec. Turpis in eu mi bibendum. Egestas fringilla
-                                                phasellus faucibus scelerisque eleifend donec pretium. Mattis rhoncus
-                                                urna neque viverra justo nec ultrices dui sapien. Quam nulla porttitor
-                                                massa id. Tincidunt nunc pulvinar sapien et. Auctor eu augue ut lectus
-                                                arcu bibendum. Condimentum lacinia quis vel eros donec. Nunc lobortis
-                                                mattis aliquam faucibus. Leo a diam sollicitudin tempor id eu nisl nunc
-                                                mi. Potenti nullam ac tortor vitae purus faucibus ornare suspendisse
-                                                sed. Nunc faucibus a pellentesque sit amet porttitor eget dolor. Eget
-                                                nunc lobortis mattis aliquam faucibus purus.</p>
-                                        </div>
-                                    </div>
-                                    <div class="org-structure-content tab-pane" role="tabpanel" id="org-struct">
-                                        <img class="p-4"
-                                            src="https://sdn-117gresik.sch.id/wp-content/uploads/2021/02/Salinan-dari-Minarsihs.pd_.sd-President_COO_20210218_113442.png"
-                                            alt="struktur-organisasi" width="100%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>

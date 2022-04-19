@@ -100,7 +100,8 @@
                                         <div class="row">
                                             <div class="col-md-4 text-center">
                                                 <img src='../assets/img/<?= $profile_img ?>' alt="pas-foto"
-                                                    class="mb-3 img-fluid">
+                                                    class="mb-3 img-fluid"
+                                                    data-original="../assets/img/<?= $profile_img ?>">
                                                 <form action="kelola_karyawan.php" method="post"
                                                     enctype="multipart/form-data" role="form">
                                                     <input type="hidden" name="id_kar" value="<?= $id_kar ?>">
@@ -117,10 +118,15 @@
                                                 <table class="table table-borderless table-responsive table-hover">
                                                     <tbody>
                                                         <tr>
-                                                            <td class="detail-keterangan"><span>Status</span>
-                                                            </td>
-                                                            <td class="detail-bio" style="font-weight: 900"><span
-                                                                    id="status_kar"><?= $status_kar ?></span></td>
+                                                            <td class="detail-keterangan"><span>Status</span></td>
+                                                            <?php if($status_kar == "Aktif"){
+                                                                echo '<td class="detail-bio text-success">
+                                                                <b>'. $status_kar.'</b></td>';
+                                                            }else{
+                                                                echo '<td class="detail-bio text-danger">
+                                                                <b>'. $status_kar.'</b></td>';
+                                                            }
+                                                            ?>
                                                         </tr>
                                                         <tr>
                                                             <td class="detail-keterangan"><span>Jabatan</span></td>
@@ -186,17 +192,21 @@
                                                         date_default_timezone_set("Asia/Jakarta");
                                                         $query = mysqli_query($konek, "SELECT * FROM log_activity WHERE id_kar = $_GET[id_kar]");
                                                         while($data=mysqli_fetch_array($query)){
-                                                            $id_kar      = $data[0];
+                                                            $id_log      = $data[0];
                                                             $timestamp   = $data[1];
                                                             $deskripsi   = $data[2];
-                                                            $id_kar      = $data[3];
                                                             $id_admin    = $data[4];
                                                         ?>
                                                     <tr>
 
                                                         <td><?= date("Y-m-d H:i:s", $timestamp);?></td>
                                                         <td><?= $deskripsi ?></td>
-                                                        <td><?= $id_admin ?></td>
+                                                        <td>
+                                                            <?php 
+                                                                $admin = mysqli_fetch_assoc(mysqli_query($konek, "SELECT username FROM admin WHERE id_admin='$id_admin'"));
+                                                                echo $admin['username'];
+                                                            ?>
+                                                        </td>
                                                     </tr>
                                                     <?php }; ?>
                                                 </tbody>
@@ -226,9 +236,17 @@
     <script src="../<?= URL_JS ?>/jquery-3.3.1.slim.min.js"></script>
     <script src="../<?= URL_JS ?>/bootstrap.min.js"></script>
     <script src="../<?= URL_JS ?>/popper.min.js"></script>
-    <script src="../<?= URL_JS ?>/script.js"></script>
     <script src="../<?= URL_JS ?>/jquery.dataTables.min.js"></script>
     <script src="../<?= URL_JS ?>/dataTables.bootstrap5.min.js"></script>
+    <script src="../<?= URL_JS ?>/zooming.min.js"></script>
+    <script>
+    new Zooming({
+        bgColor: "#000",
+        bgOpacity: 0.85,
+        scaleBase: 0.6,
+    }).listen('img');
+    </script>
+    <script src="../<?= URL_JS ?>/script.js"></script>
 
 </body>
 

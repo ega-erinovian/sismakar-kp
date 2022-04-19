@@ -5,23 +5,15 @@
     
     // Kondisi jika belum login - akan dikirim lagi ke login.php
     if (!isset($_SESSION["username"])) {
-        $_SESSION['login'] = "Anda harus login untuk mengakses halaman ini";
+        $_SESSION['login'] = ACCESS_DENIED;
         header('Location:../login.php');
     }
-    
-    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 900)) {
-        session_destroy();
-        session_unset();
-    }
-    
-    $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time
 ?>
 
 <nav id="sidebar">
     <!-- Heading Sidebar -->
     <div class="sidebar-header">
-        <img src="https://i1.wp.com/2017.jakarta.wordcamp.org/files/2017/10/logo-rumahweb-panjang-tr-1.png?fit=1000%2C259&ssl=1"
-            class="img-fluid" />
+        <img src=<?= RUMAHWEB_LOGO ?> class="img-fluid" />
     </div>
 
     <!-- List link -->

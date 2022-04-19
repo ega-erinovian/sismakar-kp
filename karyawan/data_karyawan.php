@@ -77,7 +77,8 @@
                 <div class="col-12">
                     <div class="card">
                         <form action="kelola_karyawan.php" method="post" role="form">
-                            <button class="btn btn-primary m-4" name="kelola" value="Tambah">+ Tambah Karyawan</button>
+                            <button class="btn btn-primary btn-lg m-4" name="kelola" value="Tambah">+ Tambah
+                                Karyawan</button>
                         </form>
                     </div>
                 </div>
@@ -88,7 +89,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Tabel Karyawan</h3>
+                            <h3>Tabel Karyawan - <?= $_GET['tampil-data'] ?></h3>
                         </div>
                         <!-- PHP Fetch Data -->
                         <div class="card-body">
@@ -109,19 +110,10 @@
                                         <?php
                                             require_once 'tabelKaryawan.php';
                                             if(isset($_GET['tampil-data'])){
-                                                switch($_GET['tampil-data']){
-                                                    case 'all':
-                                                        tampilTabelKaryawan($konek, "");
-                                                        break;
-                                                    case 'tetap':
-                                                        tampilTabelKaryawan($konek, " WHERE tipe_kar = 'tetap'");
-                                                        break;
-                                                    case 'kontrak':
-                                                        tampilTabelKaryawan($konek, " WHERE tipe_kar = 'kontrak'");
-                                                        break;
-                                                    case 'magang':
-                                                        tampilTabelKaryawan($konek, " WHERE tipe_kar = 'magang'");
-                                                        break;
+                                                if($_GET['tampil-data'] != "all"){
+                                                    tampilTabelKaryawan($konek, " WHERE tipe_kar = '".$_GET['tampil-data']."'");    
+                                                }else{
+                                                    tampilTabelKaryawan($konek, "");
                                                 }
                                             }
                                         ?>

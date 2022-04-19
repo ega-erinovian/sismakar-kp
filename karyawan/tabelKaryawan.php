@@ -19,7 +19,7 @@
                 <td>$status_kar</td>
                 <td>
                     <form action='../karyawan/detail_karyawan.php' method='GET'>
-                        <button type='submit' class='btn btn-primary' value='$id_kar' name='id_kar'>detail</button>
+                        <button type='submit' class='btn btn-primary btn-sm' value='$id_kar' name='id_kar'>detail</button>
                     </form>
                 </td>
             </tr>";

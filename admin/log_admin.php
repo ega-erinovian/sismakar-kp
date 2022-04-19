@@ -68,6 +68,7 @@
                                     <tbody>
                                         <!-- Tab Log Aktivitas Karyawan -->
                                         <?php
+                                            date_default_timezone_set("Asia/Jakarta");
                                             $query = mysqli_query($konek, "SELECT * FROM log_activity WHERE id_admin = $_SESSION[id_admin]");
                                             while($data=mysqli_fetch_array($query)){
                                                 $id_kar      = $data[0];
