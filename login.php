@@ -30,6 +30,7 @@
 <body>
     <section class="login-page">
         <div class="container h-100">
+            <!-- Alert saat gagal login -->
             <div class="row">
                 <div class="col-12 position-relative">
                     <?php

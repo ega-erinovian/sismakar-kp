@@ -7,7 +7,7 @@
         $_SESSION['login'] = ACCESS_DENIED;
         header('Location:../login.php');
     }
-    
+    // Kondisi jika tab dinonaktif selama waktu yang ditentukan maka session akan di destroy
     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 900)) {
         session_destroy();
         session_unset();
@@ -95,7 +95,7 @@
                                                 $profile_img = $data[12];
 
                                                 if($profile_img == "")
-                                                    $profile_img = "empty_pfp.webp";
+                                                    $profile_img = "empty_pp.webp";
                                         ?>
                                         <div class="row">
                                             <div class="col-md-4 text-center">

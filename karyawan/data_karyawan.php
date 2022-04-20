@@ -7,7 +7,7 @@
         $_SESSION['login'] = ACCESS_DENIED;
         header('Location:../login.php');
     }
-    
+    // Kondisi jika tab dinonaktif selama waktu yang ditentukan maka session akan di destroy
     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 900)) {
         session_destroy();
         session_unset();
@@ -73,6 +73,7 @@
                 }
             ?>
 
+            <!-- Tombol tambah karyawan -->
             <div class="row">
                 <div class="col-12">
                     <div class="card">

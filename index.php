@@ -8,6 +8,7 @@
         header('Location:login.php');
     }
     
+    // Kondisi jika tab dinonaktif selama waktu yang ditentukan maka session akan di destroy
     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 900)) {
         session_unset();
         session_destroy();
@@ -29,10 +30,8 @@
     <title><?= SITENAME ?></title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= URL_CSS ?>/bootstrap.min.css?v=<?= time(); ?>" />
-    <!----css3---->
+    <!---- CSS ---->
     <link rel="stylesheet" href="<?= URL_CSS ?>/custom.css?v=<?= time(); ?>" />
-    <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
@@ -48,7 +47,8 @@
         <!-- Darken background in mobile view for offcanvas -->
         <div class="body-overlay"></div>
 
-        <!-- Sidebar  -->
+        <!-- ========== Start Sidebar ========== -->
+
         <nav id="sidebar">
             <!-- Heading Sidebar -->
             <div class="sidebar-header">
@@ -118,9 +118,11 @@
                 </li>
             </ul>
         </nav>
+        <!-- ========== End Sidebar ========== -->
 
         <div id="content">
-            <!-- Navbar -->
+
+            <!-- ========== Start Navbar ========== -->
             <div class="top-navbar">
                 <nav class="navbar">
                     <div class="container-fluid justify-content-start align-items-center">
@@ -144,13 +146,15 @@
                     </div>
                 </nav>
             </div>
+            <!-- ========== End Navbar ========== -->
 
-            <!-- Main Content -->
+            <!-- ========== Start Main Content ========== -->
+
             <div class="index main-content">
                 <!-- Heading Dashboard -->
                 <?php require_once "template/heading-dashboard.php"; ?>
 
-                <!-- Card Navtabs About + Organizaional Structure -->
+                <!-- Card Navtabs Announcement, About, &  Organizaional Structure -->
                 <div class="navbar-tabs">
                     <div class="row">
                         <div class="col">
@@ -168,6 +172,7 @@
                                             Structure</a>
                                     </li>
                                 </ul>
+                                <!-- Card announcement selesai masa kerja karyawan -->
                                 <div class="tab-content">
                                     <div class="announcement-content tab-pane active" role="tabpanel" id="announce-tab">
                                         <div class="p-4">
@@ -208,6 +213,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Card about -->
                                     <div class="about-content tab-pane" role="tabpanel" id="about">
                                         <div class="about-container p-4">
                                             <h1>About</h1>
@@ -225,6 +231,7 @@
                                                 yang kami tanamkan diseluruh jajaran manajemen dan karyawan.</p>
                                         </div>
                                     </div>
+                                    <!-- Card organizational structure -->
                                     <div class="org-structure-content tab-pane" role="tabpanel" id="org-struct">
                                         <img class="p-4"
                                             src="https://sdn-117gresik.sch.id/wp-content/uploads/2021/02/Salinan-dari-Minarsihs.pd_.sd-President_COO_20210218_113442.png"
@@ -359,6 +366,7 @@
                         $getJmlDivisiQuery[$i] = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS jml_div FROM karyawan WHERE divisi = '".$namaDivisi[$i]."'"));
                     }
 
+                    // Setting bar chart
                     $dataPoints = array(
                         array("y" => $getJmlDivisiQuery[0]['jml_div'], "label" => $namaDivisi[0] ),
                         array("y" => $getJmlDivisiQuery[1]['jml_div'], "label" => $namaDivisi[1] ),
@@ -382,6 +390,7 @@
                     </div>
                 </div>
             </div>
+            <!-- ========== End Main Content ========== -->
         </div>
     </div>
     <!-- Optional JavaScript -->
@@ -390,7 +399,7 @@
     <script src="<?= URL_JS ?>/jquery-3.3.1.slim.min.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script>
-    // Bar Chart
+    // Setting Bar Chart
     window.onload = function() {
 
         var chart = new CanvasJS.Chart("chartContainer", {
