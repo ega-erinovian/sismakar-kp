@@ -28,30 +28,24 @@
             <a href="#dropdownKaryawan" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i
                     class="material-icons"> table_chart </i><span>Data Karyawan</span></a>
             <ul class="collapse list-unstyled menu" id="dropdownKaryawan">
-                <li>
-                    <form action="../karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                        <input type="hidden" value="all" name="tampil-data">
-                        <button type="submit" class="btn btn-link">Semua Karyawan</button>
-                    </form>
-                </li>
-                <li>
-                    <form action="../karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                        <input type="hidden" value="tetap" name="tampil-data">
-                        <button type="submit" class="btn btn-link">Karyawan Tetap</button>
-                    </form>
-                </li>
-                <li>
-                    <form action="../karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                        <input type="hidden" value="kontrak" name="tampil-data">
-                        <button type="submit" class="btn btn-link">Karyawan Kontrak</button>
-                    </form>
-                </li>
-                <li>
-                    <form action="../karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                        <input type="hidden" value="magang" name="tampil-data">
-                        <button type="submit" class="btn btn-link">Karyawan Magang</button>
-                    </form>
-                </li>
+                <form action="../karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
+                    <li>
+                        <button type="submit" class="btn btn-link" value="All" name="tipe-kar">Semua
+                            Karyawan</button>
+                    </li>
+                    <li>
+                        <button type="submit" class="btn btn-link" value="Tetap" name="tipe-kar">Karyawan
+                            Tetap</button>
+                    </li>
+                    <li>
+                        <button type="submit" class="btn btn-link" value="Kontrak" name="tipe-kar">Karyawan
+                            Kontrak</button>
+                    </li>
+                    <li>
+                        <button type="submit" class="btn btn-link" value="Magang" name="tipe-kar">Karyawan
+                            Magang</button>
+                    </li>
+                </form>
             </ul>
         </li>
 

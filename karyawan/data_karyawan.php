@@ -78,6 +78,7 @@
                 <div class="col-12">
                     <div class="card">
                         <form action="kelola_karyawan.php" method="post" role="form">
+                            <input type="hidden" name="tipe-kar" value=<?= $_GET["tipe-kar"]?>>
                             <button class="btn btn-primary btn-lg m-4" name="kelola" value="Tambah">+ Tambah
                                 Karyawan</button>
                         </form>
@@ -90,7 +91,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Tabel Karyawan - <?= $_GET['tampil-data'] ?></h3>
+                            <h3>Tabel Karyawan - <?= $_GET['tipe-kar'] ?></h3>
                         </div>
                         <!-- PHP Fetch Data -->
                         <div class="card-body">
@@ -110,9 +111,9 @@
                                     <tbody>
                                         <?php
                                             require_once 'tabelKaryawan.php';
-                                            if(isset($_GET['tampil-data'])){
-                                                if($_GET['tampil-data'] != "all"){
-                                                    tampilTabelKaryawan($konek, " WHERE tipe_kar = '".$_GET['tampil-data']."'");    
+                                            if(isset($_GET['tipe-kar'])){
+                                                if($_GET['tipe-kar'] != "All"){
+                                                    tampilTabelKaryawan($konek, " WHERE tipe_kar = '".$_GET['tipe-kar']."'");    
                                                 }else{
                                                     tampilTabelKaryawan($konek, "");
                                                 }

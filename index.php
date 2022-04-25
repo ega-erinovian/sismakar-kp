@@ -69,30 +69,24 @@
                     <a href="#dropdownKaryawan" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i
                             class="material-icons"> table_chart </i><span>Data Karyawan</span></a>
                     <ul class="collapse list-unstyled menu" id="dropdownKaryawan">
-                        <li>
-                            <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                                <button type="submit" class="btn btn-link" value="all" name="tampil-data">Semua
+                        <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
+                            <li>
+                                <button type="submit" class="btn btn-link" value="All" name="tipe-kar">Semua
                                     Karyawan</button>
-                            </form>
-                        </li>
-                        <li>
-                            <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                                <button type="submit" class="btn btn-link" value="tetap" name="tampil-data">Karyawan
+                            </li>
+                            <li>
+                                <button type="submit" class="btn btn-link" value="Tetap" name="tipe-kar">Karyawan
                                     Tetap</button>
-                            </form>
-                        </li>
-                        <li>
-                            <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                                <button type="submit" class="btn btn-link" value="kontrak" name="tampil-data">Karyawan
+                            </li>
+                            <li>
+                                <button type="submit" class="btn btn-link" value="Kontrak" name="tipe-kar">Karyawan
                                     Kontrak</button>
-                            </form>
-                        </li>
-                        <li>
-                            <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
-                                <button type="submit" class="btn btn-link" value="magang" name="tampil-data">Karyawan
+                            </li>
+                            <li>
+                                <button type="submit" class="btn btn-link" value="Magang" name="tipe-kar">Karyawan
                                     Magang</button>
-                            </form>
-                        </li>
+                            </li>
+                        </form>
                     </ul>
                 </li>
 

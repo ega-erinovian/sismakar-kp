@@ -80,7 +80,7 @@
                 }else{
                     $_SESSION['msg'] = mysqli_error($konek);
                 }
-                header('Location: ../karyawan/data_karyawan.php?tampil-data=all');
+                header('Location: ../karyawan/data_karyawan.php?tipe-kar='.$_POST['tampil_kar']);
                 break;
             case 'Edit':
                 if($img_ext != ''){
@@ -161,7 +161,7 @@
                     $_SESSION['msg'] = mysqli_error($konek);
                 }
                 
-                header('Location: ../karyawan/data_karyawan.php?tampil-data=all');
+                header('Location: ../karyawan/data_karyawan.php?tipe-kar='.$_POST['tampil_kar']);
                 break;
             case 'Delete':
                 $query = "DELETE FROM `karyawan` WHERE `id_kar` = '$_POST[id_kar]'";
@@ -181,7 +181,7 @@
                         $_SESSION['msg'] = "Data cannot be deleted, image not found, delete the data using MySQL";
                     }
                 }
-                header('Location: ../karyawan/data_karyawan.php?tampil-data=all');
+                header('Location: ../karyawan/data_karyawan.php?tipe-kar='.$_POST['tampil_kar']);
                 break;
         }
 }

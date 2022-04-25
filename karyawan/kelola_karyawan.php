@@ -85,6 +85,9 @@
                                                 $divisi      = "";
                                                 $jabatan     = "";
                                                 $tipe_kar    = "";
+                                                if($_POST['tipe-kar'] != 'All'){
+                                                    $tipe_kar = $_POST['tipe-kar'];
+                                                }
                                                 $tgl_masuk   = "";
                                                 $tgl_selesai = "";
                                                 $email       = "";
@@ -114,6 +117,7 @@
                                         }
                                     ?>
                                 <input type="hidden" name="kelola" value="<?= $_POST['kelola'] ?>" />
+                                <input type="hidden" name="tampil_kar" value="<?= $_POST['tipe-kar'] ?>" />
                                 <input type="hidden" name="id_kar" value="<?= $id_kar ?>">
                                 <div class="col-12 mb-3">
                                     <label for="inputNama" class="form-label">Nama</label>
@@ -162,8 +166,7 @@
                                     <label class="form-label">Tanggal Selesai</label>
                                     <input type="datetime-local" class="form-control" name="tgl_selesai"
                                         id="tgl-selesai" placeholder="YYYY/MM/DDTHH:mm"
-                                        value="<?= date("Y-m-d\TH:i", $tgl_selesai);?>"
-                                        min="<?= date("Y-m-d\TH:i", $tgl_masuk);?>">
+                                        value="<?= date("Y-m-d\TH:i", $tgl_selesai);?>">
                                 </div>
                                 <div class="col-12 col-md-6 mb-3">
                                     <label for="inputEmail" class="form-label">Email</label>
