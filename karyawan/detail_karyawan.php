@@ -94,8 +94,10 @@
                                                 $status_kar  = $data[11];
                                                 $profile_img = $data[12];
 
-                                                if($profile_img == "")
-                                                    $profile_img = "empty_pp.webp";
+                                                // Cek file ada atau tidak, jika tidak akan diganti foto profil kosong
+                                                if(!file_exists("../assets/img/".$profile_img)){
+                                                    $profile_img = "empty_profile.webp";
+                                                }
                                         ?>
                                         <div class="row">
                                             <div class="col-md-4 text-center">

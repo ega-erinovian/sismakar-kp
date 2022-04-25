@@ -7,6 +7,7 @@
         $_SESSION['login'] = ACCESS_DENIED;
         header('Location:../login.php');
     }
+    
     // Kondisi jika tab dinonaktif selama waktu yang ditentukan maka session akan di destroy
     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 900)) {
         session_destroy();
@@ -100,11 +101,16 @@
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Divisi</th>
-                                            <th>Jabatan</th>
                                             <th>Nomor HP</th>
                                             <th>Email</th>
+                                            <th>Divisi</th>
+                                            <th>Jabatan</th>
                                             <th>Status Karyawan</th>
+                                            <?php 
+                                                if($_GET["tipe-kar"] == 'All'){
+                                                    echo "<th>Tipe Karyawan</th>";
+                                                }
+                                            ?>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -112,22 +118,23 @@
                                         <?php
                                             require_once 'tabelKaryawan.php';
                                             if(isset($_GET['tipe-kar'])){
-                                                if($_GET['tipe-kar'] != "All"){
-                                                    tampilTabelKaryawan($konek, " WHERE tipe_kar = '".$_GET['tipe-kar']."'");    
-                                                }else{
-                                                    tampilTabelKaryawan($konek, "");
-                                                }
+                                                tampilTabelKaryawan($konek, $_GET['tipe-kar']);
                                             }
                                         ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Divisi</th>
-                                            <th>Jabatan</th>
                                             <th>Nomor HP</th>
                                             <th>Email</th>
+                                            <th>Divisi</th>
+                                            <th>Jabatan</th>
                                             <th>Status Karyawan</th>
+                                            <?php 
+                                                if($_GET["tipe-kar"] == 'All'){
+                                                    echo "<th>Tipe Karyawan</th>";
+                                                }
+                                            ?>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
