@@ -103,6 +103,9 @@
                             <a href="admin/log_admin.php"><i class="material-icons">history</i>Log Activity</a>
                         </li>
                         <li>
+                            <a href="divisi/data_divisi.php"><i class="material-icons">groups</i>Kelola Divisi</a>
+                        </li>
+                        <li>
                             <form action="model/proses_login.php" method="POST" enctype="multipart/form-data">
                                 <button class="btn btn-link btn-block" name="aksi" value="Logout" type="submit">
                                     <i class="material-icons">logout</i>Logout</button>
@@ -345,32 +348,19 @@
 
                 <!-- Card bar chart jumlah Karyawan tiap divisi -->
                 <?php
-                    // Array nama-nama divisi
-                    $namaDivisi = [
-                        "Technical Support", 
-                        "Developer", 
-                        "Network Operation Center",
-                        "Sales",
-                        "Finance",
-                        "Marketing",
-                        "Billing",
-                    ];
+                    $query = mysqli_query($konek, "SELECT * FROM divisi");
+                    while($data=mysqli_fetch_array($query)){
+                        $namaDivisi[] = $data[1];
+                        $visibility[] = $data[2];
+                    }
                     
-                    // Mengambil jumlah array tiap divisi
+                    // Mengambil jumlah array tiap divisi + setting bar chart divisi
                     for($i=0; $i<sizeof($namaDivisi); $i++){
                         $getJmlDivisiQuery[$i] = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS jml_div FROM karyawan WHERE divisi = '".$namaDivisi[$i]."'"));
+                        if($visibility[$i] != 'hide'){
+                            $dataPoints[] = array("y" => $getJmlDivisiQuery[$i]['jml_div'], "label" => $namaDivisi[$i] );
+                        }
                     }
-
-                    // Setting bar chart
-                    $dataPoints = array(
-                        array("y" => $getJmlDivisiQuery[0]['jml_div'], "label" => $namaDivisi[0] ),
-                        array("y" => $getJmlDivisiQuery[1]['jml_div'], "label" => $namaDivisi[1] ),
-                        array("y" => $getJmlDivisiQuery[2]['jml_div'], "label" => $namaDivisi[2] ),
-                        array("y" => $getJmlDivisiQuery[3]['jml_div'], "label" => $namaDivisi[3] ),
-                        array("y" => $getJmlDivisiQuery[4]['jml_div'], "label" => $namaDivisi[4] ),
-                        array("y" => $getJmlDivisiQuery[5]['jml_div'], "label" => $namaDivisi[5] ),
-                        array("y" => $getJmlDivisiQuery[6]['jml_div'], "label" => $namaDivisi[6] ),
-                    );
                 ?>
                 <div class="row">
                     <div class="col-12">

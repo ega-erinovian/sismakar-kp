@@ -78,7 +78,7 @@
 
                     $_SESSION['msg'] = "Data Added Successfully"; // send message to table log_activities
                 }else{
-                    $_SESSION['msg'] = mysqli_error($konek);
+                    $_SESSION['msg'] = "Failed Deleting Data: ".mysqli_error($konek);
                 }
                 header('Location: ../karyawan/data_karyawan.php?tipe-kar='.$_POST['tampil_kar']);
                 break;
@@ -158,7 +158,7 @@
                     }
                     $_SESSION['msg'] = "Data Updated Successfully"; // send message to table log_activities
                 }else{
-                    $_SESSION['msg'] = mysqli_error($konek);
+                    $_SESSION['msg'] = "Failed Deleting Data: ".mysqli_error($konek);
                 }
                 
                 header('Location: ../karyawan/data_karyawan.php?tipe-kar='.$_POST['tampil_kar']);
@@ -175,7 +175,7 @@
 
                             $_SESSION['msg'] = "Data Deleted Successfully"; // send message to database log_activities
                         }else{
-                            $_SESSION['msg'] = mysqli_error($konek);
+                            $_SESSION['msg'] = "Failed Deleting Data: ".mysqli_error($konek);
                         }
                     }else{
                         $_SESSION['msg'] = "Data cannot be deleted, image not found, delete the data using MySQL";

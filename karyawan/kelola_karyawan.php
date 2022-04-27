@@ -134,16 +134,19 @@
                                     <label for="inputDivisi" class="form-label">Divisi</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="divisi" required>
                                         <option value="0" disabled selected>Pilih Divisi</option>
-                                        <option <?php if($divisi=="Technical Support") echo 'selected'; ?>>Technical
-                                            Support</option>
-                                        <option <?php if($divisi=="Developer") echo 'selected'; ?>>Developer</option>
-                                        <option <?php if($divisi=="Network Operation Center") echo 'selected'; ?>>
-                                            Network Operation Center
-                                        </option>
-                                        <option <?php if($divisi=="Sales") echo 'selected'; ?>>Sales</option>
-                                        <option <?php if($divisi=="Finance") echo 'selected'; ?>>Finance</option>
-                                        <option <?php if($divisi=="Marketing") echo 'selected'; ?>>Marketing</option>
-                                        <option <?php if($divisi=="Billing") echo 'selected'; ?>>Billing</option>
+                                        <?php
+                                            // Mengambil nama div & visibility dari tabel divisi
+                                            $query = mysqli_query($konek, "SELECT * FROM divisi");
+                                            while($data=mysqli_fetch_array($query)){
+                                                $nama_div       = $data[1];
+                                                $visibility     = $data[2];
+                                                // Tampilkan jika visibility = show
+                                                if($visibility == 'show'){
+                                        ?>
+                                        <option <?php if($divisi==$nama_div) echo 'selected'; ?>><?=$nama_div?></option>
+                                        <?php
+                                            }}
+                                        ?>
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">

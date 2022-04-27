@@ -62,6 +62,9 @@
                     <a href="../admin/log_admin.php"><i class="material-icons">history</i>Log Activity</a>
                 </li>
                 <li>
+                    <a href="../divisi/data_divisi.php"><i class="material-icons">groups</i>Kelola Divisi</a>
+                </li>
+                <li>
                     <form action="../model/proses_login.php" method="POST" enctype="multipart/form-data">
                         <button class="btn btn-link btn-block" name="aksi" value="Logout" type="submit">
                             <i class="material-icons">logout</i>Logout</button>
