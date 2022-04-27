@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2022 at 10:02 AM
+-- Generation Time: Apr 27, 2022 at 06:00 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -39,6 +39,18 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id_admin`, `username`, `pass`) VALUES
 (8, 'admin', '$2y$10$kX43QzwyCnMLE4XLZ3tqoO2W8rrKYY43Qv8Khnbf2qDQTm0LgkLZ2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `divisi`
+--
+
+CREATE TABLE `divisi` (
+  `id_divisi` int(11) NOT NULL,
+  `nama_div` varchar(255) NOT NULL,
+  `visibility` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -89,12 +101,16 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `pass` (`pass`);
 
 --
+-- Indexes for table `divisi`
+--
+ALTER TABLE `divisi`
+  ADD PRIMARY KEY (`id_divisi`);
+
+--
 -- Indexes for table `karyawan`
 --
 ALTER TABLE `karyawan`
-  ADD PRIMARY KEY (`id_kar`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `no_telp` (`no_telp`);
+  ADD PRIMARY KEY (`id_kar`);
 
 --
 -- Indexes for table `log_activity`
@@ -111,6 +127,12 @@ ALTER TABLE `log_activity`
 --
 ALTER TABLE `admin`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `divisi`
+--
+ALTER TABLE `divisi`
+  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `karyawan`
