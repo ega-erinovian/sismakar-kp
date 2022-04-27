@@ -1,5 +1,6 @@
 <?php
     session_start();
+    date_default_timezone_set("Asia/Jakarta");
     require_once '../config.php';
     
     // Kondisi jika belum login - akan dikirim lagi ke login.php
@@ -78,6 +79,7 @@
 
                     $_SESSION['msg'] = "Data Added Successfully"; // send message to table log_activities
                 }else{
+                    unlink($uploaded_path);
                     $_SESSION['msg'] = "Failed Deleting Data: ".mysqli_error($konek);
                 }
                 header('Location: ../karyawan/data_karyawan.php?tipe-kar='.$_POST['tampil_kar']);
@@ -166,20 +168,15 @@
             case 'Delete':
                 $query = "DELETE FROM `karyawan` WHERE `id_kar` = '$_POST[id_kar]'";
                 $path = realpath('../assets/img/'.$tmp_profile_img);
-                if(is_writable($path)){
-                    if(unlink($path)){
-                        if(mysqli_query($konek, $query)){
-                            // Send message to log_activity table
-                            $query = "INSERT INTO log_activity VALUE ('', '$waktu', 'Deleted Karyawan_$id_kar: $nama', '$id_kar', '$_SESSION[id_admin]');";
-                            mysqli_query($konek, $query);
+                if(mysqli_query($konek, $query)){
+                    unlink($path);
+                    // Send message to log_activity table
+                    $query = "INSERT INTO log_activity VALUE ('', '$waktu', 'Deleted Karyawan_$id_kar: $nama', '$id_kar', '$_SESSION[id_admin]');";
+                    mysqli_query($konek, $query);
 
-                            $_SESSION['msg'] = "Data Deleted Successfully"; // send message to database log_activities
-                        }else{
-                            $_SESSION['msg'] = "Failed Deleting Data: ".mysqli_error($konek);
-                        }
-                    }else{
-                        $_SESSION['msg'] = "Data cannot be deleted, image not found, delete the data using MySQL";
-                    }
+                    $_SESSION['msg'] = "Data Deleted Successfully"; // send message to database log_activities
+                }else{
+                    $_SESSION['msg'] = "Failed Deleting Data: ".mysqli_error($konek);
                 }
                 header('Location: ../karyawan/data_karyawan.php?tipe-kar='.$_POST['tampil_kar']);
                 break;

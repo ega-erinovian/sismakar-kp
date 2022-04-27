@@ -1,5 +1,6 @@
 <?php
     session_start();
+    date_default_timezone_set("Asia/Jakarta");
     require_once '../config.php'; 
     
     // Kondisi jika belum login - akan dikirim lagi ke login.php
@@ -172,15 +173,14 @@
                                     <input type="datetime-local" class="form-control" name="tgl_masuk" id="tgl_masuk"
                                         placeholder="YYYY/MM/DDThh:mm" value='<?= $tgl_masuk ?>'>
                                 </div>
-                                <?php
-                                    if($tipeKar != 'Tetap'){
-                                        echo "<div class='col-12 mb-3 form-group tgl-selesai-wrapper'>
-                                                <label class='form-label'>Tanggal Selesai</label>
-                                                <input type='datetime-local' class='form-control' name='tgl_selesai' id='tglSelesai'
-                                                placeholder='YYYY/MM/DDTHH:mm' value='".$tgl_selesai."'>
-                                            </div>";
-                                    }
-                                ?>
+                                <?php if($tipeKar != 'Tetap'){ ?>
+                                <div class='col-12 mb-3 form-group tgl-selesai-wrapper'>
+                                    <label class='form-label'>Tanggal Selesai</label>
+                                    <input type='datetime-local' class='form-control' name='tgl_selesai' id='tglSelesai'
+                                        min='<?= $tgl_masuk ?>' placeholder='YYYY/MM/DDTHH:mm'
+                                        value='<?= $tgl_selesai ?>'>
+                                </div>
+                                <?php } ?>
                                 <div class="col-12 col-md-6 mb-3">
                                     <label for="inputEmail" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="inputEmail" value="<?= $email ?>"

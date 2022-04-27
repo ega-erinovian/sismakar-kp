@@ -173,21 +173,19 @@
                                 <div class="tab-content">
                                     <div class="announcement-content tab-pane active" role="tabpanel" id="announce-tab">
                                         <div class="p-4">
-                                            <h1>
-                                                Announcement
-                                            </h1>
+                                            <h1> Announcement </h1>
                                             <div class="announce-item">
                                                 <?php
-                                                $query = mysqli_query($konek, "SELECT * FROM karyawan");
-                                                while($data=mysqli_fetch_array($query)){
-                                                    $id_kar      = $data[0];
-                                                    $nama        = $data[1];
-                                                    $tgl_selesai = $data[6];
-                                                    $status_kar  = $data[11];
-                                                    
-                                                    if($tgl_selesai > 0){
-                                                        if($tgl_selesai < time() && $status_kar == "Aktif"){
-                                                        $_SESSION['announce'] = "Karyawan_".$id_kar.": <b>".$nama."</b> sudah mencapai tanggal selesai masa kerja.";
+                                                    $query = mysqli_query($konek, "SELECT * FROM karyawan");
+                                                    while($data=mysqli_fetch_array($query)){
+                                                        $id_kar      = $data[0];
+                                                        $nama        = $data[1];
+                                                        $tgl_selesai = $data[6];
+                                                        $status_kar  = $data[11];
+                                                        
+                                                        if($tgl_selesai > 0){
+                                                            if($tgl_selesai < time() && $status_kar == "Aktif"){
+                                                                $_SESSION['announce'] = "Karyawan_".$id_kar.": <b>".$nama."</b> sudah mencapai tanggal selesai masa kerja.";
                                                 ?>
                                                 <div class="alert alert-danger alert-dismissible fade show mr-1"
                                                     role="alert">
@@ -204,10 +202,10 @@
                                                     </button>
                                                 </div>
                                                 <?php
-                                                        }
-                                                        unset($_SESSION['announce']);
-                                                    }}
-                                            ?>
+                                                            }
+                                                            unset($_SESSION['announce']);
+                                                        }}
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
@@ -244,12 +242,12 @@
                 <!-- Card Jumlah Karyawan -->
                 <?php
                     // Mengambil jumlah seluruh karyawan
-                    $getTotal =  mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS total_kar FROM karyawan"));                    
+                    $getTotal =  mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS total_kar FROM karyawan WHERE status_kar='Aktif'"));                    
                     
                     // Mengambil jumlah array tiap tipe karyawan
-                    $getJmlTipeTetap = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS tetap FROM karyawan WHERE tipe_kar = 'Tetap'"));
-                    $getJmlTipeKontrak = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS kontrak FROM karyawan WHERE tipe_kar = 'Kontrak'"));
-                    $getJmlTipeMagang = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS magang FROM karyawan WHERE tipe_kar = 'Magang'"));
+                    $getJmlTipeTetap = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS tetap FROM karyawan WHERE tipe_kar = 'Tetap' AND status_kar='Aktif'"));
+                    $getJmlTipeKontrak = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS kontrak FROM karyawan WHERE tipe_kar = 'Kontrak ' AND status_kar='Aktif'"));
+                    $getJmlTipeMagang = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS magang FROM karyawan WHERE tipe_kar = 'Magang' AND status_kar='Aktif'"));
                 ?>
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -345,32 +343,38 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Card bar chart jumlah Karyawan tiap divisi -->
-                <?php
-                    $query = mysqli_query($konek, "SELECT * FROM divisi");
-                    while($data=mysqli_fetch_array($query)){
-                        $namaDivisi[] = $data[1];
-                        $visibility[] = $data[2];
-                    }
-                    
-                    // Mengambil jumlah array tiap divisi + setting bar chart divisi
-                    for($i=0; $i<sizeof($namaDivisi); $i++){
-                        $getJmlDivisiQuery[$i] = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS jml_div FROM karyawan WHERE divisi = '".$namaDivisi[$i]."'"));
-                        if($visibility[$i] != 'hide'){
-                            $dataPoints[] = array("y" => $getJmlDivisiQuery[$i]['jml_div'], "label" => $namaDivisi[$i] );
-                        }
-                    }
-                ?>
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header d-flex flex-row justify-content-between">
-                                Jumlah Karyawan Tiap Divisi <span class="material-icons me-5">equalizer</span>
+                                <b>Jumlah Karyawan Tiap Divisi</b> <span class="material-icons me-5">equalizer</span>
                             </div>
+                            <!-- Card bar chart jumlah Karyawan tiap divisi -->
+                            <?php
+                                $query = mysqli_query($konek, "SELECT * FROM divisi");
+                                while($data=mysqli_fetch_array($query)){
+                                    $namaDivisi[] = $data[1];
+                                    $visibility[] = $data[2];
+                                }
+
+                                if(isset($namaDivisi)){
+                                    // Mengambil jumlah array tiap divisi + setting bar chart divisi
+                                    for($i=0; $i<sizeof($namaDivisi); $i++){
+                                        $getJmlDivisiQuery[$i] = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS jml_div FROM karyawan WHERE divisi = '".$namaDivisi[$i]."' AND status_kar='Aktif'"));
+                                        if($visibility[$i] != 'hide'){
+                                            $dataPoints[] = array("y" => $getJmlDivisiQuery[$i]['jml_div'], "label" => $namaDivisi[$i] );
+                                        }
+                                    }
+                            ?>
                             <div class="card-body">
                                 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                             </div>
+                            <?php } else{ ?>
+                            <div class="card-body">
+                                Data divisi tidak ditemukan
+                            </div>
+                            <?php
+                            }?>
                         </div>
                     </div>
                 </div>

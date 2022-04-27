@@ -19,7 +19,7 @@ $(document).ready(function () {
         [10, 25, 50, 100, "All"],
       ],
       createdRow: function (row, data) {
-        if (data[1].toLowerCase() === "aktif") {
+        if (data[1].toLowerCase() === "aktif" || data[1].toLowerCase() === "show") {
           $("td", row).eq(1).addClass("text-success");
         } else {
           $("td", row).eq(1).addClass("text-danger");
