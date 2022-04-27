@@ -77,25 +77,29 @@
                             <form class="row g-3" action="../model/proses_kar.php" method="post"
                                 enctype="multipart/form-data">
                                 <?php
+                                
                                         if(isset($_POST['kelola'])){
-                                            // 'Tambah' condition - form dikosongkan
+                                            if(isset($_POST['tipe-kar'])) $tipeKar = $_POST['tipe-kar'];
+                                            // 'Tambah' condition
                                             if($_POST['kelola'] == 'Tambah'){
                                                 $id_kar      = "";
                                                 $nama        = "";
                                                 $divisi      = "";
                                                 $jabatan     = "";
-                                                $tipe_kar    = "";
-                                                if($_POST['tipe-kar'] != 'All'){
-                                                    $tipe_kar = $_POST['tipe-kar'];
-                                                }
-                                                $tgl_masuk   = "";
-                                                $tgl_selesai = "";
+                                                $tipe_kar    = $tipeKar;
+                                                $tgl_masuk   = date("Y-m-d\TH:i");
+                                                $tgl_selesai = date("Y-m-d\TH:i");
                                                 $email       = "";
                                                 $no_telp     = "";
                                                 $alamat      = "";
                                                 $jenis_kel   = "";
                                                 $status_kar  = "";
                                                 $profile_img = "";
+
+                                                if($tipeKar == 'All'){
+                                                    $tipe_kar = "";
+                                                    $tgl_selesai = 0;
+                                                }
                                             }else{
                                                 // 'Edit' Condition - Form terisi dengan data didatabase
                                                 $query = mysqli_query($konek, "SELECT * FROM karyawan WHERE id_kar = ".$_POST['id_kar']);
@@ -105,19 +109,21 @@
                                                     $divisi      = $data[2];
                                                     $jabatan     = $data[3];
                                                     $tipe_kar    = $data[4];
-                                                    $tgl_masuk   = $data[5];
-                                                    $tgl_selesai = $data[6];
+                                                    $tgl_masuk   = date("Y-m-d\TH:i", $data[5]);
+                                                    $tgl_selesai = date("Y-m-d\TH:i", $data[6]);
                                                     $email       = $data[7];
                                                     $no_telp     = $data[8];
                                                     $alamat      = $data[9];
                                                     $jenis_kel   = $data[10];
                                                     $status_kar  = $data[11];
                                                 }
+
+                                                $tipeKar = $tipe_kar;
                                             }
                                         }
                                     ?>
                                 <input type="hidden" name="kelola" value="<?= $_POST['kelola'] ?>" />
-                                <input type="hidden" name="tampil_kar" value="<?= $_POST['tipe-kar'] ?>" />
+                                <input type="hidden" name="tampil_kar" value="<?= $tipeKar ?>" />
                                 <input type="hidden" name="id_kar" value="<?= $id_kar ?>">
                                 <div class="col-12 mb-3">
                                     <label for="inputNama" class="form-label">Nama</label>
@@ -147,7 +153,8 @@
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="inputTipe" class="form-label">Tipe Karyawan</label>
-                                    <select class="form-control" name="tipe_kar" id="inputTipe" required>
+                                    <select class="form-control" name="tipe_kar" id="inputTipe"
+                                        onchange="findTipeValue()" required>
                                         <option disabled selected>Pilih Tipe Pegawai</option>
                                         <option <?php if($tipe_kar=="Tetap") echo 'selected'; ?>>Tetap
                                         </option>
@@ -160,14 +167,17 @@
                                 <div class="col-12 mb-3 form-group">
                                     <label class="form-label">Tanggal Masuk</label>
                                     <input type="datetime-local" class="form-control" name="tgl_masuk" id="tgl_masuk"
-                                        placeholder="YYYY/MM/DDThh:mm" value='<?= date("Y-m-d\TH:i",$tgl_masuk);?>'>
+                                        placeholder="YYYY/MM/DDThh:mm" value='<?= $tgl_masuk ?>'>
                                 </div>
-                                <div class="col-12 mb-3 form-group">
-                                    <label class="form-label">Tanggal Selesai</label>
-                                    <input type="datetime-local" class="form-control" name="tgl_selesai"
-                                        id="tgl-selesai" placeholder="YYYY/MM/DDTHH:mm"
-                                        value="<?= date("Y-m-d\TH:i", $tgl_selesai);?>">
-                                </div>
+                                <?php
+                                    if($tipeKar != 'Tetap'){
+                                        echo "<div class='col-12 mb-3 form-group tgl-selesai-wrapper'>
+                                                <label class='form-label'>Tanggal Selesai</label>
+                                                <input type='datetime-local' class='form-control' name='tgl_selesai' id='tglSelesai'
+                                                placeholder='YYYY/MM/DDTHH:mm' value='".$tgl_selesai."'>
+                                            </div>";
+                                    }
+                                ?>
                                 <div class="col-12 col-md-6 mb-3">
                                     <label for="inputEmail" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="inputEmail" value="<?= $email ?>"
@@ -241,6 +251,15 @@
             }
         });
     });
+
+    // Menangkap value jika input select dipilih, kemudian menghilangkan input select tanggal selesai
+    function findTipeValue() {
+        if ($("#inputTipe").val() === "Tetap") {
+            $(".tgl-selesai-wrapper").addClass("d-none")
+        } else {
+            $(".tgl-selesai-wrapper").removeClass("d-none")
+        }
+    }
     </script>
 </body>
 

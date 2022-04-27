@@ -19,10 +19,10 @@ $(document).ready(function () {
         [10, 25, 50, 100, "All"],
       ],
       createdRow: function (row, data) {
-        if (data[5].toLowerCase() === "aktif") {
-          $("td", row).eq(5).addClass("text-success");
+        if (data[1].toLowerCase() === "aktif") {
+          $("td", row).eq(1).addClass("text-success");
         } else {
-          $("td", row).eq(5).addClass("text-danger");
+          $("td", row).eq(1).addClass("text-danger");
         }
       },
     });

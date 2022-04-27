@@ -182,9 +182,10 @@
                                                     $tgl_selesai = $data[6];
                                                     $status_kar  = $data[11];
                                                     
-                                                    if($tgl_selesai < time() && $status_kar == "Aktif"){
+                                                    if($tgl_selesai > 0){
+                                                        if($tgl_selesai < time() && $status_kar == "Aktif"){
                                                         $_SESSION['announce'] = "Karyawan_".$id_kar.": <b>".$nama."</b> sudah mencapai tanggal selesai masa kerja.";
-                                            ?>
+                                                ?>
                                                 <div class="alert alert-danger alert-dismissible fade show mr-1"
                                                     role="alert">
                                                     <form action="karyawan/detail_karyawan.php" method="get"
@@ -200,9 +201,9 @@
                                                     </button>
                                                 </div>
                                                 <?php
-                                                }
-                                                unset($_SESSION['announce']);
-                                            }
+                                                        }
+                                                        unset($_SESSION['announce']);
+                                                    }}
                                             ?>
                                             </div>
                                         </div>

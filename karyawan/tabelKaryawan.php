@@ -19,21 +19,21 @@
                 echo "
                 <tr>
                     <td>$nama</td>
+                    <td>$status_kar</td>
                     <td>$no_telp</td>
                     <td>$email</td>
                     <td>$divisi</td>
                     <td>$jabatan</td>
-                    <td>$status_kar</td>
                     <td>$tipe_kar</td>";
             }else{
                 echo "
                 <tr>
                     <td>$nama</td>
+                    <td>$status_kar</td>
                     <td>$no_telp</td>
                     <td>$email</td>
                     <td>$divisi</td>
-                    <td>$jabatan</td>
-                    <td>$status_kar</td>";
+                    <td>$jabatan</td>";
             }
                 echo "<td>
                         <form action='../karyawan/detail_karyawan.php' method='GET'>

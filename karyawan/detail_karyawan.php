@@ -85,8 +85,8 @@
                                                 $divisi      = $data[2];
                                                 $jabatan     = $data[3];
                                                 $tipe_kar    = $data[4];
-                                                $tgl_masuk   = $data[5];
-                                                $tgl_selesai = $data[6];
+                                                $tgl_masuk   = date("Y-m-d H:i:s", $data[5]);
+                                                $tgl_selesai = date("Y-m-d H:i:s", $data[6]);
                                                 $email       = $data[7];
                                                 $no_telp     = $data[8];
                                                 $alamat      = $data[9];
@@ -141,15 +141,17 @@
                                                         <tr>
                                                             <td class="detail-keterangan"><span>Tanggal masuk</span>
                                                             </td>
-                                                            <td class="detail-bio"><?= date("Y-m-d H:i:s",$tgl_masuk);?>
+                                                            <td class="detail-bio"><?= $tgl_masuk ?>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td class="detail-keterangan"><span>Tanggal Selesai</span>
-                                                            </td>
-                                                            <td class="detail-bio">
-                                                                <?= date("Y-m-d H:i:s",$tgl_selesai); ?></td>
-                                                        </tr>
+                                                        <?php
+                                                            if($tipe_kar != 'Tetap')
+                                                                echo "<tr>
+                                                                <td class='detail-keterangan'><span>Tanggal Selesai</span>
+                                                                </td>
+                                                                <td class='detail-bio'>$tgl_selesai</td>
+                                                            </tr>";
+                                                        ?>
                                                         <tr>
                                                             <td class="detail-keterangan"><span>Email</span></td>
                                                             <td class="detail-bio"><?= $email ?></td>

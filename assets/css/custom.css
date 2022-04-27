@@ -534,7 +534,7 @@ main-content inner design like card start
   overflow-y: scroll;
 }
 
-table > tbody > tr > td:nth-child(6) {
+.data-table > tbody > tr > td:nth-child(2) {
   font-weight: bolder;
 }
 

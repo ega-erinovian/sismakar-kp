@@ -96,16 +96,16 @@
                         </div>
                         <!-- PHP Fetch Data -->
                         <div class="card-body">
-                            <div class="table-pegawai table-responsive">
+                            <div class="table-responsive">
                                 <table class="table table-striped table-hover data-table" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
+                                            <th>Status</th>
                                             <th>Nomor HP</th>
                                             <th>Email</th>
                                             <th>Divisi</th>
                                             <th>Jabatan</th>
-                                            <th>Status Karyawan</th>
                                             <?php 
                                                 if($_GET["tipe-kar"] == 'All'){
                                                     echo "<th>Tipe Karyawan</th>";
@@ -125,11 +125,11 @@
                                     <tfoot>
                                         <tr>
                                             <th>Name</th>
+                                            <th>Status</th>
                                             <th>Nomor HP</th>
                                             <th>Email</th>
                                             <th>Divisi</th>
                                             <th>Jabatan</th>
-                                            <th>Status Karyawan</th>
                                             <?php 
                                                 if($_GET["tipe-kar"] == 'All'){
                                                     echo "<th>Tipe Karyawan</th>";
