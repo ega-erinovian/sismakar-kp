@@ -177,8 +177,7 @@
                                 <div class='col-12 mb-3 form-group tgl-selesai-wrapper'>
                                     <label class='form-label'>Tanggal Selesai</label>
                                     <input type='datetime-local' class='form-control' name='tgl_selesai' id='tglSelesai'
-                                        min='<?= $tgl_masuk ?>' placeholder='YYYY/MM/DDTHH:mm'
-                                        value='<?= $tgl_selesai ?>'>
+                                        placeholder='YYYY/MM/DDTHH:mm' value='<?= $tgl_selesai ?>'>
                                 </div>
                                 <?php } ?>
                                 <div class="col-12 col-md-6 mb-3">

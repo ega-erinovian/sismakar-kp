@@ -68,21 +68,27 @@
         
         switch($_POST['kelola']){
             case 'Tambah':
-                $query = "INSERT INTO karyawan VALUE ('', '$nama', '$divisi', '$jabatan', '$tipe_kar', '$tgl_masuk', '$tgl_selesai', '$email', '$no_telp', '$alamat', '$jenis_kel', '$status_kar', '$new_img_name')";
-                if(mysqli_query($konek, $query)){
-                    // Mengambil id_kar setelah ditambahkan
-                    $id_kar = mysqli_fetch_assoc(mysqli_query($konek, "SELECT id_kar FROM karyawan WHERE nama='$nama'"));
-
-                    // Mengirimkan data ke table log_activities
-                    $query = "INSERT INTO log_activity VALUE ('', '$waktu', 'Created Karyawan_$id_kar[id_kar]: $nama', '$id_kar[id_kar]', '$_SESSION[id_admin]');";
-                    mysqli_query($konek, $query);
-
-                    $_SESSION['msg'] = "Data Added Successfully"; // send message to table log_activities
+                if($divisi != "" && $tipe_kar != ""){
+                    $query = "INSERT INTO karyawan VALUE ('', '$nama', '$divisi', '$jabatan', '$tipe_kar', '$tgl_masuk', '$tgl_selesai', '$email', '$no_telp', '$alamat', '$jenis_kel', '$status_kar', '$new_img_name')";
+                    if(mysqli_query($konek, $query)){
+                        // Mengambil id_kar setelah ditambahkan
+                        $id_kar = mysqli_fetch_assoc(mysqli_query($konek, "SELECT id_kar FROM karyawan WHERE nama='$nama'"));
+    
+                        // Mengirimkan data ke table log_activities
+                        $query = "INSERT INTO log_activity VALUE ('', '$waktu', 'Created Karyawan_$id_kar[id_kar]: $nama', '$id_kar[id_kar]', '$_SESSION[id_admin]');";
+                        mysqli_query($konek, $query);
+    
+                        $_SESSION['msg'] = "Data Added Successfully"; // send message to table log_activities
+                    }else{
+                        unlink($uploaded_path);
+                        $_SESSION['msg'] = "Failed Deleting Data: ".mysqli_error($konek);
+                    }
+                    header('Location: ../karyawan/data_karyawan.php?tipe-kar='.$_POST['tampil_kar']);
                 }else{
-                    unlink($uploaded_path);
-                    $_SESSION['msg'] = "Failed Deleting Data: ".mysqli_error($konek);
+                    $_SESSION['msg'] = "Data Tidak Boleh Kosong";
+                    header('Location: ../karyawan/data_karyawan.php?tipe-kar=All');
                 }
-                header('Location: ../karyawan/data_karyawan.php?tipe-kar='.$_POST['tampil_kar']);
+                
                 break;
             case 'Edit':
                 if($img_ext != ''){
