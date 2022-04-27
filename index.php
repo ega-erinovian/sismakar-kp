@@ -249,100 +249,106 @@
                     $getJmlTipeKontrak = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS kontrak FROM karyawan WHERE tipe_kar = 'Kontrak ' AND status_kar='Aktif'"));
                     $getJmlTipeMagang = mysqli_fetch_assoc(mysqli_query($konek, "SELECT COUNT(*) AS magang FROM karyawan WHERE tipe_kar = 'Magang' AND status_kar='Aktif'"));
                 ?>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header">
-                                <div class="icon icon-warning">
-                                    <span class="material-icons">
-                                        groups
-                                    </span>
+                <form action="karyawan/data_karyawan.php" method="get" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="icon icon-warning">
+                                        <span class="material-icons">
+                                            groups
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category"><strong>Total Karyawan</strong></p>
+                                    <h3 class="card-title">
+                                        <?php if(isset($getTotal['total_kar'])) echo $getTotal['total_kar']; else echo 0 ; ?>
+                                    </h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons text-info">info</i>
+                                        <button type="submit" class="btn btn-link" value="All" name="tipe-kar">See
+                                            detailed report</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-content">
-                                <p class="category"><strong>Total Karyawan</strong></p>
-                                <h3 class="card-title">
-                                    <?php if(isset($getTotal['total_kar'])) echo $getTotal['total_kar']; else echo 0 ; ?>
-                                </h3>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="icon icon-rose">
+                                        <span class="material-icons">
+                                            group
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category"><strong>Karyawan Tetap</strong></p>
+                                    <h3 class="card-title">
+                                        <?php if(isset($getJmlTipeTetap['tetap'])) echo $getJmlTipeTetap['tetap']; else echo 0; ?>
+                                    </h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons text-info">info</i>
+                                        <button type="submit" class="btn btn-link" value="Tetap" name="tipe-kar">See
+                                            detailed report</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons text-info">info</i>
-                                    <a href="karyawan/data_karyawan.php?tampil-data=all">See detailed report</a>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="icon icon-success">
+                                        <span class="material-icons">
+                                            group
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category"><strong>Karyawan Kontrak</strong></p>
+                                    <h3 class="card-title">
+                                        <?php if(isset($getJmlTipeKontrak['kontrak'])) echo $getJmlTipeKontrak['kontrak']; else echo 0; ?>
+                                    </h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons text-info">info</i>
+                                        <button type="submit" class="btn btn-link" value="Kontrak" name="tipe-kar">See
+                                            detailed report</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="icon icon-gray">
+                                        <span class="material-icons">
+                                            group
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category"><strong>Karyawan Magang</strong></p>
+                                    <h3 class="card-title">
+                                        <?php if(isset($getJmlTipeMagang['magang'])) echo $getJmlTipeMagang['magang']; else echo 0; ?>
+                                    </h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons text-info">info</i>
+                                        <button type="submit" class="btn btn-link" value="Magang" name="tipe-kar">See
+                                            detailed report</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header">
-                                <div class="icon icon-rose">
-                                    <span class="material-icons">
-                                        group
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <p class="category"><strong>Karyawan Tetap</strong></p>
-                                <h3 class="card-title">
-                                    <?php if(isset($getJmlTipeTetap['tetap'])) echo $getJmlTipeTetap['tetap']; else echo 0; ?>
-                                </h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons text-info">info</i>
-                                    <a href="karyawan/data_karyawan.php?tampil-data=tetap">See detailed report</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header">
-                                <div class="icon icon-success">
-                                    <span class="material-icons">
-                                        group
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <p class="category"><strong>Karyawan Kontrak</strong></p>
-                                <h3 class="card-title">
-                                    <?php if(isset($getJmlTipeKontrak['kontrak'])) echo $getJmlTipeKontrak['kontrak']; else echo 0; ?>
-                                </h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons text-info">info</i>
-                                    <a href="karyawan/data_karyawan.php?tampil-data=kontrak">See detailed report</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header">
-                                <div class="icon icon-gray">
-                                    <span class="material-icons">
-                                        group
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <p class="category"><strong>Karyawan Magang</strong></p>
-                                <h3 class="card-title">
-                                    <?php if(isset($getJmlTipeMagang['magang'])) echo $getJmlTipeMagang['magang']; else echo 0; ?>
-                                </h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons text-info">info</i>
-                                    <a href="karyawan/data_karyawan.php?tampil-data=magang">See detailed report</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
                 <div class="row">
                     <div class="col-12">
                         <div class="card">

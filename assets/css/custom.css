@@ -467,7 +467,6 @@ main-content inner design like card start
 }
 
 .card .card-footer {
-  margin: 0 7px 0px;
   padding-top: 10px;
   background-color: var(--white);
   border-top: 1px solid #eeeeee;
@@ -490,6 +489,7 @@ main-content inner design like card start
 .card .card-content .category {
   margin-bottom: 0;
 }
+
 .card .category:not([class*="text-"]) {
   color: #555555;
   font-size: 14px;
