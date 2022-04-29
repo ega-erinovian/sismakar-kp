@@ -25,6 +25,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/icon-rmwb.png" style="object-fit: cover;">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <title><?= SITENAME ?></title>
