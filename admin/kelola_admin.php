@@ -56,7 +56,7 @@
             <?php require_once "../template/heading-dashboard.php"; ?>
 
             <!-- Card kelola admin -->
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-12">
                     <?php
                     if(isset($_SESSION['msg'])){

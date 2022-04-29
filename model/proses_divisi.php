@@ -28,18 +28,23 @@
 
         switch($_POST['kelola']){
             case 'Tambah':
-                $query = "INSERT INTO divisi VALUE ('', '$nama_div', '$visibility')";
-                if(mysqli_query($konek, $query)){
-                    // Mengambil id divisi setelah ditambahkan
-                    $id_divisi = mysqli_fetch_assoc(mysqli_query($konek, "SELECT id_divisi FROM divisi WHERE nama_div='$nama_div'"));
+                if($visibility != ""){
+                    $query = "INSERT INTO divisi VALUE ('', '$nama_div', '$visibility')";
+                    if(mysqli_query($konek, $query)){
+                        // Mengambil id divisi setelah ditambahkan
+                        $id_divisi = mysqli_fetch_assoc(mysqli_query($konek, "SELECT id_divisi FROM divisi WHERE nama_div='$nama_div'"));
 
-                    // Mengirimkan data ke table log_activities
-                    $query = "INSERT INTO log_activity VALUE ('', '$waktu', 'Created Divisi_$id_divisi[id_divisi]: $nama_div', 0, '$_SESSION[id_admin]');";
-                    mysqli_query($konek, $query);
+                        // Mengirimkan data ke table log_activities
+                        $query = "INSERT INTO log_activity VALUE ('', '$waktu', 'Created Divisi_$id_divisi[id_divisi]: $nama_div', 0, '$_SESSION[id_admin]');";
+                        mysqli_query($konek, $query);
 
-                    $_SESSION['msg'] = "Data Added Successfully"; // send message to table log_activities
+                        $_SESSION['msg'] = "Data Added Successfully"; // send message to table log_activities
+                    }else{
+                        $_SESSION['msg'] = "Failed Adding Data: ".mysqli_error($konek);
+                    }
                 }else{
-                    $_SESSION['msg'] = "Failed Adding Data: ".mysqli_error($konek);
+                    $_SESSION['msg'] = "Data Tidak Boleh Kosong";
+                    header('Location: ../divisi/data_divisi.php');
                 }
                 header('Location: ../divisi/data_divisi.php');
                 break;

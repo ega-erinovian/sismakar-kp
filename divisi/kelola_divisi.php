@@ -67,7 +67,7 @@
             ?>
 
             <!-- Card Kelola Divisi -->
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">

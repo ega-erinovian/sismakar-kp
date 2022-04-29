@@ -52,7 +52,7 @@
             <?php require_once "../template/heading-dashboard.php"; ?>
 
             <!-- Card Log Aktivitas Admin -->
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-12">
                     <div class="card">
                         <div class="log-content container-fluid py-4">

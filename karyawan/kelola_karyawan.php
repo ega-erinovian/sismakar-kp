@@ -68,7 +68,7 @@
             ?>
 
             <!-- Card Kelola Karyawan -->
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">

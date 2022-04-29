@@ -1,8 +1,8 @@
 <?php
     $hostname = "localhost";
-    $username = "sis123b_ifupnyk";
-    $password = "ifupnyk2022";
-    $database = "sis123b_sismapeg";
+    $username = "root";
+    $password = "";
+    $database = "sismapeg";
     
     $konek = new mysqli($hostname, $username, $password, $database);
     if($konek->connect_error){

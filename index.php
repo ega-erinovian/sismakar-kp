@@ -219,20 +219,81 @@
                                                 melayani lebih dari 14.000 domain pelanggan. Berawal dari 1 server, kini
                                                 Rumahweb telah memiliki lebih dari 30 server untuk melayani hosting dan
                                                 VPS/Cloud.
-
+                                                <br>
                                                 Pertumbuhan ini tidak lepas dari penanaman sikap dan kesadaran bahwa
                                                 bisnis ini dibangun atas kepercayaan pelanggan terhadap Rumahweb
                                                 sehingga seluruh aktivitas yang ada didalamnya hanya bertujuan untuk
                                                 satu hal saja, yakni menjamin kepercayaan pelanggan terhadap Rumahweb
                                                 dapat kami jaga dengan segala konsekuensinya. Harga mati sebuah komitmen
-                                                yang kami tanamkan diseluruh jajaran manajemen dan karyawan.</p>
+                                                yang kami tanamkan diseluruh jajaran manajemen dan karyawan.
+                                            </p>
                                         </div>
                                     </div>
                                     <!-- Card organizational structure -->
-                                    <div class="org-structure-content tab-pane" role="tabpanel" id="org-struct">
-                                        <img class="p-4"
-                                            src="https://sdn-117gresik.sch.id/wp-content/uploads/2021/02/Salinan-dari-Minarsihs.pd_.sd-President_COO_20210218_113442.png"
-                                            alt="struktur-organisasi" width="100%">
+                                    <div class="exc-leader-content tab-pane" role="tabpanel" id="org-struct">
+                                        <div class="row m-4">
+                                            <div class="card-deck">
+                                                <div class="card">
+                                                    <div class="card-body text-center">
+                                                        <img src="assets/img/exc-leader/PakYusuf.webp"
+                                                            alt="profile-pict">
+                                                        <h5 class="card-title mt-3"><b>Yusuf Nurrachman</b></h5>
+                                                        <p class="card-text">CEO/CMO</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-body text-center">
+                                                        <img src="assets/img/exc-leader/BuYeni.webp" alt="profile-pict">
+                                                        <h5 class="card-title mt-3"><b>Yeni Wibawandarsih</b></h5>
+                                                        <p class="card-text">CFO</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-body text-center">
+                                                        <img src="assets/img/exc-leader/PakHisam.webp"
+                                                            alt="profile-pict">
+                                                        <h5 class="card-title mt-3"><b>Hisam</b></h5>
+                                                        <p class="card-text">CIO</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row m-4">
+                                            <div class="card-deck">
+                                                <div class="card">
+                                                    <div class="card-body text-center">
+                                                        <img src="assets/img/exc-leader/PakAgung.webp"
+                                                            alt="profile-pict">
+                                                        <h5 class="card-title mt-3"><b>Agung Priaprabakti</b></h5>
+                                                        <p class="card-text">NOC Manager</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-body text-center">
+                                                        <img src="assets/img/exc-leader/PakTriyadi.webp"
+                                                            alt="profile-pict">
+                                                        <h5 class="card-title mt-3"><b>Triyadi</b></h5>
+                                                        <p class="card-text">Technical Support Manager</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-body text-center">
+                                                        <img src="assets/img/exc-leader/PakTulusCahyono.webp"
+                                                            alt="profile-pict">
+                                                        <h5 class="card-title mt-3"><b>Tulus Cahyono</b></h5>
+                                                        <p class="card-text">Sales Operations Manager</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-body text-center">
+                                                        <img src="assets/img/exc-leader/PakNanag.webp"
+                                                            alt="profile-pict">
+                                                        <h5 class="card-title mt-3"><b>Nanang Ardinanto</b></h5>
+                                                        <p class="card-text">Billing Operation Manager</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -350,7 +411,7 @@
                         </div>
                     </div>
                 </form>
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header d-flex flex-row justify-content-between">
