@@ -534,11 +534,6 @@ main-content inner design like card start
   overflow-y: scroll;
 }
 
-.navbar-tabs .exc-leader-content {
-  max-height: 80vh;
-  overflow-y: scroll;
-}
-
 .navbar-tabs .exc-leader-content .card {
   box-shadow: 3px 3px 1rem rgba(0, 0, 0, 0.124);
   transition: all 0.3s;

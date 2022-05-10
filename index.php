@@ -203,6 +203,10 @@
                                                     </button>
                                                 </div>
                                                 <?php
+                                                            }else{
+                                                ?>
+                                                <p>No announcement currently</p>
+                                                <?php
                                                             }
                                                             unset($_SESSION['announce']);
                                                         }}
